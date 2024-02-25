@@ -32,15 +32,21 @@ function setup() {
 }
 
 function draw() {
+  drawGame();
+  drawPlayers();
+  checkPressedKeys();
+  checkBoundaries();
+}
+
+function drawGame() {
   background(bg);
-  
+}
+
+function drawPlayers() {
   for (const guest of guests) {
     fill(r, g, b);
     rect(guest.x, guest.y, 20, 20);
   }
-  
-  checkPressedKeys();
-  checkBoundaries();
 }
 
 function checkPressedKeys() {
