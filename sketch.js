@@ -47,7 +47,17 @@ function draw() {
 }
 
 function drawGame() {
+  //map image
   background(bg);
+  
+  //pos reset key, bottom right of screen
+  push();
+  fill("white");
+  textStyle(BOLD);
+  textFont("Courier New");
+  textSize(11);
+  text("(Ctrl to reset position)", 475, 630)
+  pop();
 }
 
 function drawPlayers() {
