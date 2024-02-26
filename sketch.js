@@ -43,6 +43,7 @@ function draw() {
   drawPlayers();
   checkPressedKeys();
   checkBoundaries();
+  messages();
 }
 
 function drawGame() {
@@ -120,5 +121,18 @@ function checkBoundaries() {
     move *= -1;
   } else {
     move = 3;
+  }
+}
+
+function messages() {
+  // 'door locked' message
+  if (my.x > 285 && my.x < 305 && my.y > 610) {
+    fill("white");
+    rect(258, 580, 100, 30, 5);
+    
+    fill("black");
+    textStyle(BOLDITALIC);
+    textFont("Courier New");
+    text("It's locked!", 265, 598);
   }
 }
