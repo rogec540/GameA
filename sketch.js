@@ -22,8 +22,8 @@ function preload() {
 function setup() {
   createCanvas(640,640);
   
-  my.x = 40;
-  my.y = 300;
+  my.x = 294;
+  my.y = 610;
   move = 5;
   
   r = random(255);
@@ -43,6 +43,14 @@ function drawGame() {
 }
 
 function drawPlayers() {
+  //draw entryway
+  push();
+  noStroke();
+  fill(63,24,1);
+  rect(289,632,30,7,4);
+  pop();
+  
+  //initialize players
   for (const guest of guests) {
     fill(r, g, b);
     rect(guest.x, guest.y, 20, 20);
@@ -62,15 +70,25 @@ function checkPressedKeys() {
 }
 
 function checkBoundaries() {
-  if (my.x < 0) {  //check left window boundary
+  if (my.x < 0) {  //left and top wall
     my.x += move;
-  } else if (my.x > 610) {  //check right window
+  } else if (my.x > 619) { //right wall
     my.x -= move;
-  } else if (my.y < 0) {  //check top window
+  } else if (my.y < 0) { //top wall
     my.y += move;
-  } else if (my.y > 610) {  //check bottom window
+  } else if (my.y > 619) { //bottom wall
     my.y -= move;
-  } else if (my.x>230 && my.x<350 && my.y<90) {  //check piano
+  } else if (my.x > 230 && my.x < 350 && my.y < 90) { //piano
+    move *= -1;
+  } else if (my.x < 98 && my.y > 110 && my.y < 190) { //left curtain
+    move *= -1;
+  } else if (my.x < 30 && my.y > 212 && my.y < 295) { //left countertop
+    move *= -1;
+  } else if (my.x > 588 && my.y > 212 && my.y < 295) { //right countertop
+    move *= -1;
+  } else if (my.x > 80 && my.x < 125 && my.y > 586) { //bottom roundtable
+    move *= -1;
+  } else if (my.x > 555 && my.x < 605 && my.y > 550 && my.y < 605) { //chess table
     move *= -1;
   } else {
     move = 5;
