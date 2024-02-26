@@ -88,47 +88,35 @@ function keyPressed() {
 }
 
 function checkBoundaries() {
-  if (my.x < 0) {
-    //left wall
+  if (my.x < 0) { //left wall
     my.x += move;
-  } else if (my.x > 619) {
-    //right wall
+  } else if (my.x > 619) { //right wall
     my.x -= move;
-  } else if (my.y < 0) {
-    //top wall
+  } else if (my.y < 0) { //top wall
     my.y += move;
-  } else if (my.y > 619) {
-    //bottom wall
+  } else if (my.y > 619) { //bottom wall
     my.y -= move;
-  } else if (my.x > 230 && my.x < 350 && my.y < 90) {
-    //piano
+  } else if (my.x > 230 && my.x < 350 && my.y < 90) { //piano
     move *= -1;
-  } else if (my.x < 98 && my.y > 110 && my.y < 195) {
-    //left curtain
+  } else if (my.x < 98 && my.y > 110 && my.y < 195) { //left curtain
     move *= -1;
-  } else if (my.x > 490 && my.y > 110 && my.y < 195) {
-    // right curtain
+  } else if (my.x > 490 && my.y > 110 && my.y < 195) { // right curtain
     move *= -1;
-  } else if (my.x > 110 && my.x < 290 && my.y > 140 && my.y < 181) {
-    //left stagefront
+  } else if (my.x > 110 && my.x < 290 && my.y > 140 && my.y < 181) { //left stagefront
     move *= -1;
-  } else if (my.x > 300 && my.x < 478 && my.y > 140 && my.y < 181) {
-    //right stagefront
+  } else if (my.x > 300 && my.x < 478 && my.y > 140 && my.y < 181) { //right stagefront
     move *= -1;
-  } else if (my.x > 43 && my.x < 94 && my.y < 67) {
-    //top left sidetable
+  } else if (my.x > 43 && my.x < 94 && my.y < 67) { //top left table
     move *= -1;
-  } else if (my.x < 30 && my.y > 212 && my.y < 295) {
-    //left countertop
+  } else if (my.x > 490 && my.x < 610 && my.y < 55) { // top right table
     move *= -1;
-  } else if (my.x > 588 && my.y > 212 && my.y < 295) {
-    //right countertop
+  } else if (my.x < 30 && my.y > 212 && my.y < 295) { //left countertop
     move *= -1;
-  } else if (my.x > 80 && my.x < 125 && my.y > 586) {
-    //bottom roundtable
+  } else if (my.x > 588 && my.y > 212 && my.y < 295) { //right countertop
     move *= -1;
-  } else if (my.x > 555 && my.x < 605 && my.y > 550 && my.y < 605) {
-    //chess table
+  } else if (my.x > 80 && my.x < 125 && my.y > 586) { //bottom roundtable
+    move *= -1;
+  } else if (my.x > 555 && my.x < 605 && my.y > 550 && my.y < 605) { //chess table
     move *= -1;
   } else {
     move = 3;
