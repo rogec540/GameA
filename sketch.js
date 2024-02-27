@@ -16,6 +16,8 @@ let guests, my, shared;
 let move;
 let r, g, b;
 
+let strokeColor;
+
 function preload() {
   partyConnect("wss://demoserver.p5party.org", "team1_gameA");
   guests = partyLoadGuestShareds();
@@ -36,6 +38,8 @@ function setup() {
   r = random(255);
   g = random(255);
   b = random(255);
+  strokeColor = random(255);
+
 }
 
 function draw() {
@@ -60,6 +64,8 @@ function drawGame() {
   pop();
 }
 
+
+
 function drawPlayers() {
   //draw entryway
   push();
@@ -70,10 +76,17 @@ function drawPlayers() {
 
   //initialize players
   for (const guest of guests) {
-    fill(r, g, b);
+    // fill(r, g, b);
+    fill(strokeColor);
     rect(guest.x, guest.y, 20, 20);
   }
 }
+
+// allows player to change color of their square on mousePressed
+function mousePressed() {
+  strokeColor = color(random(255), random(255), random(255));
+}
+
 
 // DESIGN VALUE: Easy access
 // uses common keys to move
