@@ -91,6 +91,7 @@ function mousePressed() {
 // DESIGN VALUE: Easy access
 // uses common keys to move
 function checkPressedKeys() {
+  //movement WASD and arrow keys
   if (keyIsDown(LEFT_ARROW) || keyIsDown(65 /*a*/)) {
     my.x -= move;
   } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68 /*d*/)) {
@@ -100,6 +101,15 @@ function checkPressedKeys() {
   } else if (keyIsDown(DOWN_ARROW) || keyIsDown(83 /*s*/)) {
     my.y += move;
   } else my.keysReleasedSinceAction = true;
+}
+
+function keyPressed() {
+  //reset position with 'Ctrl' key
+  if (keyCode === CONTROL) {
+    my.x = 294;
+    my.y = 610;
+    redraw();
+  }
 }
 
 function keyPressed() {
