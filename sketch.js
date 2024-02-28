@@ -72,7 +72,7 @@ function drawIntroScreen() {
 	textAlign(CENTER);
 	textStyle(BOLD);
 	textLeading(20);
-	textSize(20);
+	textSize(12);
 	// You are musicians who wake up stuck in time loop at the site of their first concert.
 	text(
 		'OMG?! Dude, what is going on. We are being teleported to the concert hall we had our first performance at!',
