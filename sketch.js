@@ -18,7 +18,7 @@ let r, g, b;
 let strokeColor;
 
 let gameState = 'intro';
-let pixelfyFont;
+let pixelifyFont;
 
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
@@ -28,9 +28,9 @@ function preload() {
 
 	// DESIGN VALUE: Goated graphics
 	bg = loadImage('./assets/GameAMap2.png');
-	pixelfyFont = loadFont(
-		'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
-	);
+	// pixelifyFont = loadFont(
+	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
+	// );
 }
 
 function setup() {
@@ -44,7 +44,7 @@ function setup() {
 	g = random(255);
 	b = random(255);
 	strokeColor = random(255);
-	textFont(pixelfyFont);
+	// textFont(pixelifyFont);
 }
 
 function draw() {
@@ -65,7 +65,7 @@ function draw() {
 
 function drawIntroScreen() {
 	background('lightblue');
-	textFont(pixelfyFont);
+	// textFont(pixelifyFont);
 	textAlign(CENTER);
 	textStyle(BOLD);
 	textLeading(20);
