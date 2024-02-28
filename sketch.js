@@ -78,6 +78,8 @@ function drawIntroScreen() {
 	text('No way is this...where we had our first concert?', 200, 280, 250, 350);
 	fill('#000066');
 	text('-click to continue-', 180, 450, 300, 600);
+	fill('#000066');
+	text('-WASD/ARROW-', 180, 480, 300, 600);
 }
 
 function drawGame() {
