@@ -4,6 +4,7 @@
 // Artists: Jana Ochse, Lanea Zimmerman, Tuomo Untinen, William Thompson, @papapishu, @Gerald_G
 
 // The beginnings of an explorable room -- attempting an interactive puzzle or escape game
+// You are musicians who wake up stuck in time loop at the site of their first concert.
 
 // Our design values:
 // Easy access
@@ -25,13 +26,7 @@ function preload() {
 	guests = partyLoadGuestShareds();
 	my = partyLoadMyShared();
 	shared = partyLoadShared('shared', {});
-
-	// DESIGN VALUE: Goated graphics
 	bg = loadImage('./assets/GameAMap2.png');
-	// this part causes problems...
-	// pixelifyFont = loadFont(
-	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
-	// );
 }
 
 function setup() {
@@ -46,7 +41,6 @@ function setup() {
 	b = random(255);
 	strokeColor = random(255);
 	textFont('QuinqueFive');
-	// textFont(pixelifyFont);
 }
 
 function draw() {
@@ -66,21 +60,17 @@ function draw() {
 }
 
 function drawIntroScreen() {
-	background('lightblue');
+	background('#6699CC');
 	textFont('QuinqueFive');
-	// textFont(pixelifyFont);
 	textAlign(CENTER);
-	textStyle(BOLD);
-	textLeading(20);
 	textSize(12);
-	// You are musicians who wake up stuck in time loop at the site of their first concert.
-	text(
-		'OMG?! Dude, what is going on. We are being teleported to the concert hall we had our first performance at!',
-		200,
-		150,
-		250,
-		150
-	);
+	textLeading(25);
+	fill('white');
+	text('OMG?! We are being teleported!', 200, 150, 250, 350);
+	fill('white');
+	text('No way is this...where we had our first concert?', 200, 280, 250, 350);
+	fill('white');
+	text('click to continue', 180, 450, 300, 600);
 }
 
 function drawGame() {
@@ -118,7 +108,6 @@ function mousePressed() {
 	strokeColor = color(random(255), random(255), random(255));
 }
 
-// DESIGN VALUE: Easy access
 // uses common keys to move
 function checkPressedKeys() {
 	//movement WASD and arrow keys
