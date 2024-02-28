@@ -18,7 +18,7 @@ let r, g, b;
 let strokeColor;
 
 let gameState = 'intro';
-let pixelifyFont;
+let quinqueFont;
 
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
@@ -45,6 +45,7 @@ function setup() {
 	g = random(255);
 	b = random(255);
 	strokeColor = random(255);
+	textFont('QuinqueFive');
 	// textFont(pixelifyFont);
 }
 
@@ -66,6 +67,7 @@ function draw() {
 
 function drawIntroScreen() {
 	background('lightblue');
+	textFont('QuinqueFive');
 	// textFont(pixelifyFont);
 	textAlign(CENTER);
 	textStyle(BOLD);
@@ -89,9 +91,9 @@ function drawGame() {
 	push();
 	fill('white');
 	textStyle(BOLD);
-	textFont('Courier New');
-	textSize(11);
-	text('(Ctrl to reset position)', 475, 630);
+	textFont('QuinqueFive');
+	textSize(7);
+	text('(Ctrl to reset position)', 530, 630);
 	pop();
 }
 
@@ -204,11 +206,12 @@ function messages() {
 	// 'door locked' message
 	if (my.x > 285 && my.x < 305 && my.y > 610) {
 		fill('white');
-		rect(258, 580, 100, 30, 5);
+		rect(248, 580, 125, 30, 5);
 
 		fill('black');
-		textStyle(BOLDITALIC);
-		textFont('Courier New');
-		text("It's locked!", 265, 598);
+		// textStyle(BOLDITALIC);
+		textFont('QuinqueFive');
+		textSize(8);
+		text("It's locked!", 313, 598);
 	}
 }
