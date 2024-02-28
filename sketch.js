@@ -28,6 +28,7 @@ function preload() {
 
 	// DESIGN VALUE: Goated graphics
 	bg = loadImage('./assets/GameAMap2.png');
+	// this part causes problems...
 	// pixelifyFont = loadFont(
 	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
 	// );
