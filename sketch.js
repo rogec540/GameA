@@ -22,7 +22,6 @@ let strokeColor;
 let gameState = 'intro';
 let quinqueFont;
 
-
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
 	guests = partyLoadGuestShareds();
@@ -30,11 +29,6 @@ function preload() {
 	shared = partyLoadShared('shared', {});
 	bg = loadImage('./assets/GameAMap2.png');
 	bg = loadImage('./assets/portal.png');
-
-	// this part causes problems...
-	// pixelifyFont = loadFont(
-	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
-	// );
 }
 
 function setup() {
