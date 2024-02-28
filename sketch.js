@@ -29,15 +29,12 @@ function preload() {
 	my = partyLoadMyShared();
 	shared = partyLoadShared('shared', {});
 	bg = loadImage('./assets/GameAMap2.png');
-<<<<<<< Updated upstream
-=======
-	bgPortal = loadImage('./assets/portal.png');
+	bg = loadImage('./assets/portal.png');
 
 	// this part causes problems...
 	// pixelifyFont = loadFont(
 	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
 	// );
->>>>>>> Stashed changes
 }
 
 function setup() {
