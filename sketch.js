@@ -29,11 +29,6 @@ function preload() {
 	shared = partyLoadShared('shared', {});
 	bg = loadImage('./assets/GameAMap2.png');
 	bgPortal = loadImage('./assets/portal.png');
-
-	// this part causes problems...
-	// pixelifyFont = loadFont(
-	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
-	// );
 }
 
 function setup() {
@@ -207,7 +202,6 @@ function messages() {
 		rect(248, 580, 125, 30, 5);
 
 		fill('black');
-		// textStyle(BOLDITALIC);
 		textFont('QuinqueFive');
 		textSize(8);
 		text("It's locked!", 313, 598);
