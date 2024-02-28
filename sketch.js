@@ -22,7 +22,6 @@ let strokeColor;
 let gameState = 'intro';
 let quinqueFont;
 
-
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
 	guests = partyLoadGuestShareds();
@@ -73,12 +72,12 @@ function drawIntroScreen() {
 	textAlign(CENTER);
 	textSize(12);
 	textLeading(25);
-	fill('white');
+	fill('#000066');
 	text('OMG?! We are being teleported!', 200, 150, 250, 350);
-	fill('white');
+	fill('#000066');
 	text('No way is this...where we had our first concert?', 200, 280, 250, 350);
-	fill('white');
-	text('click to continue', 180, 450, 300, 600);
+	fill('#000066');
+	text('-click to continue-', 180, 450, 300, 600);
 }
 
 function drawGame() {
