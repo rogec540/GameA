@@ -11,8 +11,8 @@
 // Win together, lose together
 // Goated graphics
 
-let bgPortal;
 let bg;
+let bgPortal;
 let guests, my, shared;
 let move;
 let r, g, b;
@@ -29,7 +29,7 @@ function preload() {
 	my = partyLoadMyShared();
 	shared = partyLoadShared('shared', {});
 	bg = loadImage('./assets/GameAMap2.png');
-	bgPortal = loadImage('./assets/portal.png')
+	bgPortal = loadImage('./assets/portal.png');
 
 	// this part causes problems...
 	// pixelifyFont = loadFont(
