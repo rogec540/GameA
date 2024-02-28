@@ -4,7 +4,6 @@
 // Artists: Jana Ochse, Lanea Zimmerman, Tuomo Untinen, William Thompson, @papapishu, @Gerald_G
 
 // The beginnings of an explorable room -- attempting an interactive puzzle or escape game
-// Code inspired by d12 https://p5party.org/examples/d12/
 
 // Our design values:
 // Easy access
