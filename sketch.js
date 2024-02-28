@@ -11,6 +11,7 @@
 // Win together, lose together
 // Goated graphics
 
+let bgPortal;
 let bg;
 let guests, my, shared;
 let move;
@@ -21,12 +22,22 @@ let strokeColor;
 let gameState = 'intro';
 let quinqueFont;
 
+
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
 	guests = partyLoadGuestShareds();
 	my = partyLoadMyShared();
 	shared = partyLoadShared('shared', {});
 	bg = loadImage('./assets/GameAMap2.png');
+<<<<<<< Updated upstream
+=======
+	bgPortal = loadImage('./assets/portal.png');
+
+	// this part causes problems...
+	// pixelifyFont = loadFont(
+	// 	'https://fonts.gstatic.com/s/pixelifysans/v2/1Ptug8zYS_SKggPNyC0ISg.ttf'
+	// );
+>>>>>>> Stashed changes
 }
 
 function setup() {
@@ -60,7 +71,7 @@ function draw() {
 }
 
 function drawIntroScreen() {
-	background('#6699CC');
+	background(bgPortal);
 	textFont('QuinqueFive');
 	textAlign(CENTER);
 	textSize(12);
