@@ -29,7 +29,7 @@ function preload() {
 	my = partyLoadMyShared();
 	shared = partyLoadShared('shared', {});
 	bg = loadImage('./assets/GameAMap2.png');
-	bg = loadImage('./assets/portal.png');
+	bgPortal = loadImage('./assets/portal.png');
 
 	// this part causes problems...
 	// pixelifyFont = loadFont(
