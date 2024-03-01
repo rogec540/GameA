@@ -68,26 +68,29 @@ function drawIntroScreen() {
 	textSize(12);
 	textLeading(25);
 	fill('#000066');
-	text('OMG?! We are being teleported!', 200, 150, 250, 350);
+	text('OMG?! We are being teleported!', 200, 165, 250, 350);
 	fill('#000066');
 	text('No way is this...where we had our first concert?', 200, 280, 250, 350);
+
+	//start button
+	push();
+	fill('white');
+	rect(170, 438, 300, 38, 10);
 	fill('#000066');
 	text('-click to continue-', 180, 450, 300, 600);
-	fill('#000066');
-	text('-WASD/ARROW-', 180, 480, 300, 600);
+	pop();
 }
 
 function drawGame() {
 	//map image
 	background(bg);
 
-	//pos reset key, bottom right of screen
+	//'press i for controls'
 	push();
 	fill('white');
-	textStyle(BOLD);
-	textFont('QuinqueFive');
-	textSize(7);
-	text('(Ctrl to reset position)', 530, 630);
+	textSize(8);
+	textAlign(LEFT);
+	text('press \'i\' for controls', 10, 590, 250, 600);
 	pop();
 }
 
@@ -123,6 +126,22 @@ function checkPressedKeys() {
 		my.y -= move;
 	} else if (keyIsDown(DOWN_ARROW) || keyIsDown(83 /*s*/)) {
 		my.y += move;
+	} else if (keyIsDown (73)) {  //controls window
+		push();
+		textAlign(LEFT);
+		
+		fill('white');
+		strokeWeight(3);
+		rect(145, 200, 320, 155, 10);
+
+		fill('black');
+		textStyle(BOLD);
+		textFont('QuinqueFive');
+		textSize(8);
+		text('WASD or arrow keys to move', 165, 230);
+		text('\'Ctrl\' to reset position', 160, 280);
+		text('click to change colors', 165, 330);
+		pop();
 	} else my.keysReleasedSinceAction = true;
 }
 
