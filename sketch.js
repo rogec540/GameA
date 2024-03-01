@@ -62,6 +62,7 @@ function draw() {
 		checkBoundaries();
 		messages();
 		playMusic();
+		checkMusic();
 	}
 
 	if (gameState === 'intro' && mouseIsPressed) {
@@ -268,5 +269,15 @@ function playMusic() {
 		pop();
 
 		music3 = true;
+	}
+}
+
+function checkMusic() {
+	if (music1 === true && music2 === true &&  music3 === true) {
+		push();
+		noStroke();
+		fill(255, 251, 0, 50);
+		ellipse(592, 585, 100);
+		pop();
 	}
 }
