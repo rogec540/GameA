@@ -15,6 +15,9 @@ let bg;
 let bgPortal;
 let guests, my, shared;
 let move;
+
+let music1, music2, music3;
+
 let r, g, b;
 
 let strokeColor;
@@ -43,6 +46,10 @@ function setup() {
 	b = random(255);
 	strokeColor = random(255);
 	textFont('QuinqueFive');
+
+	music1 = false;
+	music2 = false;
+	music3 = false;
 }
 
 function draw() {
@@ -54,6 +61,7 @@ function draw() {
 		checkPressedKeys();
 		checkBoundaries();
 		messages();
+		playMusic();
 	}
 
 	if (gameState === 'intro' && mouseIsPressed) {
@@ -85,7 +93,7 @@ function drawGame() {
 	//map image
 	background(bg);
 
-	//'press i for controls'
+	//'press i for controls' message bottom left
 	push();
 	fill('white');
 	textSize(8);
@@ -132,15 +140,16 @@ function checkPressedKeys() {
 		
 		fill('white');
 		strokeWeight(3);
-		rect(145, 200, 320, 155, 10);
+		rect(145, 200, 320, 180, 10);
 
 		fill('black');
 		textStyle(BOLD);
 		textFont('QuinqueFive');
 		textSize(8);
 		text('WASD or arrow keys to move', 165, 230);
-		text('\'Ctrl\' to reset position', 160, 280);
-		text('click to change colors', 165, 330);
+		text('\'E\' to interact', 160, 270);
+		text('\'Ctrl\' to reset position', 160, 310);
+		text('click to change colors', 165, 350);
 		pop();
 	} else my.keysReleasedSinceAction = true;
 }
@@ -224,5 +233,40 @@ function messages() {
 		textFont('QuinqueFive');
 		textSize(8);
 		text("It's locked!", 313, 598);
+	}
+}
+
+function playMusic() {
+	// play piano
+	if (my.x > 280 && my.x < 305 && my.y < 107 && keyIsDown(69)) {
+		push();
+		fill(255, 251, 0, 30);
+		noStroke();
+		ellipse(304, 60, 110);
+		pop();
+
+		music1 = true;
+	}
+
+	// play trumpet
+	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && keyIsDown(69)) {
+		push();
+		fill(255, 251, 0, 50);
+		noStroke();
+		ellipse(430, 75, 40);
+		pop();
+
+		music2 = true;
+	}
+
+	// play guitar
+	if (my.x > 360 && my.x < 400 && my.y > 600 && keyIsDown(69)) {
+		push();
+		fill(255, 251, 0, 50);
+		noStroke();
+		ellipse(390, 620, 40);
+		pop();
+
+		music3 = true;
 	}
 }
