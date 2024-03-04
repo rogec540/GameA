@@ -16,6 +16,12 @@ let bgPortal;
 let guests, my, shared;
 let move;
 
+let p1;
+let p2;
+let p3;
+let p4;
+
+
 let music1, music2, music3;
 
 let r, g, b;
@@ -41,6 +47,12 @@ function preload() {
 	});
 	bg = loadImage('./assets/GameAMap2.png');
 	bgPortal = loadImage('./assets/portal.png');
+
+	p1 = loadImage("./assets/p1.png");
+    p2 = loadImage("./assets/p2.png");
+    p3 = loadImage("./assets/p3.png");
+	p4 = loadImage("./assets/p4.png");
+
 }
 
 function setup() {
