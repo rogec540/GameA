@@ -24,7 +24,7 @@ let p4;
 
 let music1, music2, music3;
 
-let r, g, b;
+let clue1;
 
 let strokeColor;
 
@@ -39,8 +39,9 @@ function preload() {
 	shared = partyLoadShared("globals", {
 		gameState: 'intro',
 		startTime: Date.now(),
-		displayTime: null
+		displayTime: null,
 	});
+
 	bg = loadImage('./images/GameAMap2.png');
 	bgPortal = loadImage('./images/portal.png');
 
@@ -58,11 +59,10 @@ function setup() {
 	my.y = 610;
 	move = 3;
 
-	r = random(255);
-	g = random(255);
-	b = random(255);
 	strokeColor = random(255);
 	textFont('QuinqueFive');
+
+	clue1 = true;
 
 	music1 = false;
 	music2 = false;
@@ -152,11 +152,6 @@ function manageTimer() {
 	}
 }
 
-// allows player to change color of their square on mousePressed
-function mousePressed() {
-	strokeColor = color(random(255), random(255), random(255));
-}
-
 // uses common keys to move
 function checkPressedKeys() {
 	//movement WASD and arrow keys
@@ -186,15 +181,6 @@ function checkPressedKeys() {
 		text('click to change colors', 165, 350);
 		pop();
 	} else my.keysReleasedSinceAction = true;
-}
-
-function keyPressed() {
-	//reset position with 'Ctrl' key
-	if (keyCode === CONTROL) {
-		my.x = 294;
-		my.y = 610;
-		redraw();
-	}
 }
 
 function keyPressed() {
@@ -268,6 +254,26 @@ function messages() {
 		textSize(8);
 		text("It's locked!", 313, 598);
 	}
+
+	if (shared.gameState === 'playing' && clue1 === true) {
+		fill('white');
+		rect(134, 270, 340, 120, 10);
+
+		push();
+		fill('black');
+		textSize(10);
+		textLeading(20);
+		text("Clue 1:", 50, 280, 300);
+		text("The hands will tell you all you need to know.", 160, 310, 300);
+		text("(Double click to close)", 160, 365, 300);
+		pop();
+	} else if (shared.gameState === 'playing' && clue1 === false) {
+		return;
+	}
+}
+
+function doubleClicked() {
+	clue1 = false;
 }
 
 function playMusic() {
