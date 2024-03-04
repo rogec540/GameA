@@ -28,9 +28,6 @@ let r, g, b;
 
 let strokeColor;
 
-// stashed changes
-let gameState = 'intro';
-
 let quinqueFont;
 
 const TIMER_DURATION = 500000;
@@ -44,13 +41,13 @@ function preload() {
 		startTime: Date.now(),
 		displayTime: null
 	});
-	bg = loadImage('./assets/GameAMap2.png');
-	bgPortal = loadImage('./assets/portal.png');
+	bg = loadImage('./images/GameAMap2.png');
+	bgPortal = loadImage('./images/portal.png');
 
-	p1 = loadImage("./assets/p1.png");
-    p2 = loadImage("./assets/p2.png");
-    p3 = loadImage("./assets/p3.png");
-	p4 = loadImage("./assets/p4.png");
+	p1 = loadImage("./images/p1.png");
+    p2 = loadImage("./images/p2.png");
+    p3 = loadImage("./images/p3.png");
+	p4 = loadImage("./images/p4.png");
 
 }
 
