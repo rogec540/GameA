@@ -119,7 +119,10 @@ function drawGame() {
 	fill('white');
 	textSize(8);
 	textAlign(LEFT);
-	text('press \'i\' for controls', 10, 590, 250, 600);
+	text('hold \'i\' for controls', 10, 570, 250, 600);
+	if (clue1 === false) {
+		text('\'shift\' for clues list', 2, 590, 250, 600);
+	}
 	pop();
 
 	//game timer
@@ -169,7 +172,7 @@ function checkPressedKeys() {
 		
 		fill('white');
 		strokeWeight(3);
-		rect(145, 200, 320, 180, 10);
+		rect(145, 200, 320, 140, 10);
 
 		fill('black');
 		textStyle(BOLD);
@@ -178,8 +181,24 @@ function checkPressedKeys() {
 		text('WASD or arrow keys to move', 165, 230);
 		text('\'E\' to interact', 160, 270);
 		text('\'Ctrl\' to reset position', 160, 310);
-		text('click to change colors', 165, 350);
 		pop();
+	} else if (keyIsDown(SHIFT)) {
+		if (clue1 === false) {
+			push();
+			strokeWeight(3);
+			fill('white');
+			rect(134, 350, 340, 120, 10);
+			pop();
+
+			push();
+			fill('black');
+			textSize(8);
+			textLeading(12);
+			textAlign(LEFT);
+			text("Clue 1:", 150, 370, 300);
+			text("The hands will tell you all you need to know.", 150, 390, 350);
+			pop();
+		}
 	} else my.keysReleasedSinceAction = true;
 }
 
@@ -255,17 +274,21 @@ function messages() {
 		text("It's locked!", 313, 598);
 	}
 
+	//starting clue
 	if (shared.gameState === 'playing' && clue1 === true) {
+		push();
+		strokeWeight(3);
 		fill('white');
-		rect(134, 270, 340, 120, 10);
+		rect(134, 350, 340, 120, 10);
+		pop();
 
 		push();
 		fill('black');
 		textSize(10);
 		textLeading(20);
-		text("Clue 1:", 50, 280, 300);
-		text("The hands will tell you all you need to know.", 160, 310, 300);
-		text("(Double click to close)", 160, 365, 300);
+		text("Clue 1:", 50, 360, 300);
+		text("The hands will tell you all you need to know.", 160, 390, 300);
+		text("(Double click to close)", 160, 445, 300);
 		pop();
 	} else if (shared.gameState === 'playing' && clue1 === false) {
 		return;
