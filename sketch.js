@@ -22,14 +22,19 @@ let r, g, b;
 
 let strokeColor;
 
-let gameState = 'intro';
 let quinqueFont;
+
+const TIMER_DURATION = 500000;
 
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
 	guests = partyLoadGuestShareds();
 	my = partyLoadMyShared();
-	shared = partyLoadShared('shared', {});
+	shared = partyLoadShared("globals", {
+		gameState: 'intro',
+		startTime: Date.now(),
+		displayTime: null
+	});
 	bg = loadImage('./assets/GameAMap2.png');
 	bgPortal = loadImage('./assets/portal.png');
 }
@@ -53,9 +58,12 @@ function setup() {
 }
 
 function draw() {
-	if (gameState === 'intro') {
+	// update timer based on host
+	if (partyIsHost()) manageTimer();
+
+	if (shared.gameState === 'intro') {
 		drawIntroScreen();
-	} else if (gameState === 'playing') {
+	} else if (shared.gameState === 'playing') {
 		drawGame();
 		drawPlayers();
 		checkPressedKeys();
@@ -65,8 +73,8 @@ function draw() {
 		checkMusic();
 	}
 
-	if (gameState === 'intro' && mouseIsPressed) {
-		gameState = 'playing';
+	if (shared.gameState === 'intro' && mouseIsPressed) {
+		shared.gameState = 'playing';
 	}
 }
 
@@ -101,6 +109,11 @@ function drawGame() {
 	textAlign(LEFT);
 	text('press \'i\' for controls', 10, 590, 250, 600);
 	pop();
+
+	//game timer
+	textSize(12);
+	fill('white');
+	text(shared.displayTime, 40, 620);
 }
 
 function drawPlayers() {
@@ -116,6 +129,14 @@ function drawPlayers() {
 		// fill(r, g, b);
 		fill(strokeColor);
 		rect(guest.x, guest.y, 20, 20);
+	}
+}
+
+function manageTimer() {
+	const elapsed = Date.now() - shared.startTime;
+	shared.displayTime = floor((TIMER_DURATION - elapsed) / 1000) + 1;
+	if (elapsed > TIMER_DURATION) {
+		shared.displayTime = "";
 	}
 }
 
