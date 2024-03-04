@@ -27,11 +27,10 @@ let music1, music2, music3;
 let r, g, b;
 
 let strokeColor;
-<<<<<<< Updated upstream
 
-=======
+// stashed changes
 let gameState = 'intro';
->>>>>>> Stashed changes
+
 let quinqueFont;
 
 const TIMER_DURATION = 500000;
