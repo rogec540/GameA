@@ -22,11 +22,8 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 
 ## Visuals
 <img src="./src/images/p1.gif" alt="blue" width="150"/>
-&nbsp; &nbsp; &nbsp;
 <img src="./src/images/p2.gif" alt="red" width="150"/>
-&nbsp; &nbsp; &nbsp;
 <img src="./src/images/p3.gif" alt="green" width="150"/>
-&nbsp; &nbsp; &nbsp;
 <img src="./src/images/p4.gif" alt="yellow" width="150"/>
 
 
