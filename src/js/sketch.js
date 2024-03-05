@@ -149,7 +149,7 @@ function drawPlayers() {
 
 	//initialize players
 	for (const guest of guests) {
-		image(randomChar, guest.x, guest.y, 35, 45);
+		image(randomChar, guest.x, guest.y, 25, 35);
 	}
 }
 
