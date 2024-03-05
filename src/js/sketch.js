@@ -31,7 +31,7 @@ let strokeColor;
 
 let quinqueFont;
 
-const TIMER_DURATION = 500000;
+const TIMER_DURATION = 400000;
 
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
