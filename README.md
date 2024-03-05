@@ -21,11 +21,10 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 <br>
 
 ## Visuals
+<img src="./src/images/GameAMap.png" alt="background" width="300"/> &nbsp; <img src="./src/images/portal.png" alt="background" height="300"/>
+
+
 <img src="./src/images/p1.gif" alt="blue" width="150"/> <img src="./src/images/p2.gif" alt="red" width="150"/> <img src="./src/images/p3.gif" alt="green" width="150"/> <img src="./src/images/p4.gif" alt="yellow" width="150"/>
-
-
-
-
 
 <br>
 <br>
@@ -50,7 +49,9 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
     - From:
     - [link here]()
 
-
+<br>
+<br>
+<br>
 
 ## Support/Contact
 ### Team Crikey
@@ -58,6 +59,7 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 **Chloe Yiu** Available on Github @ [yiuchl↗](https://github.com/yiuchl)\
 **Emma Wu** Available on Github @ [ewwamu↗](https://github.com/ewwamu)
 
+<br>
 
 [^1]: *Made for Spring 2024 Collab: P5 Party by Charlotte Rogers, Chloe Yiu, and Emma Wu*
 
