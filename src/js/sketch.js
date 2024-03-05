@@ -21,8 +21,9 @@ let randomChar;
 
 let music1, music2, music3;
 
-let clue1, clue2;
+let clue1, clue2, clue3;
 let clockface;
+let chess;
 
 let strokeColor;
 
@@ -38,11 +39,12 @@ function preload() {
 		gameState: 'intro',
 		startTime: Date.now(),
 		displayTime: null,
+		clue3: false
 	});
 	sharedMusic = partyLoadShared("shared", {
 		music1: false,
 		music2: false,
-		music3: false
+		music3: false,
 	})
 
 	bg = loadImage('./images/GameAMap.png');
@@ -54,6 +56,8 @@ function preload() {
 	characters[3] = loadImage("./images/p4.png");
 
 	clockface = loadImage("./images/clockface.jpg");
+
+	chess = loadImage("./images/chess.png");
 }
 
 function setup() {
@@ -86,6 +90,7 @@ function draw() {
 		messages();
 		playMusic();
 		checkMusic();
+		endgame();
 	}
 
 	if (shared.gameState === 'intro' && mouseIsPressed) {
@@ -338,9 +343,22 @@ function messages() {
 
 	//final chessboard clue
 	if(shared.music1 === true && shared.music2 === true && shared.music3 === true && my.x > 520 && my.x < 620 && my.y > 520 && my.y < 620 && keyIsDown(69)) {
+		push();
+		strokeWeight(3);
+		fill('white');
+		image(chess, 210, 140, 200, 200);
+		rect(134, 350, 340, 120, 10);
+		pop();
+
+		push();
 		fill('black');
-		rect(150, 150, 300, 300);
+		textSize(10);
+		textLeading(15);
+		text('Why is the king sitting out of place? Must be the final clue.', 145, 390, 330);
+		pop();
 	}
+
+	shared.clue3 = true;
 }
 
 function doubleClicked() {
@@ -392,4 +410,8 @@ function checkMusic() {
 		ellipse(592, 585, 100);
 		pop();
 	}
+}
+
+function endgame() {
+	
 }
