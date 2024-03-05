@@ -13,7 +13,7 @@
 
 let bg;
 let bgPortal;
-let guests, my, shared;
+let guests, my, shared, sharedMusic;
 let move;
 
 let p1;
@@ -42,6 +42,11 @@ function preload() {
 		startTime: Date.now(),
 		displayTime: null,
 	});
+	sharedMusic = partyLoadShared("shared", {
+		music1: false,
+		music2: false,
+		music3: false
+	})
 
 	bg = loadImage('./images/GameAMap.png');
 	bgPortal = loadImage('./images/portal.png');
@@ -67,9 +72,9 @@ function setup() {
 	clue1 = true;
 	clue2 = true;
 
-	music1 = false;
-	music2 = false;
-	music3 = false;
+	// music1 = false;
+	// music2 = false;
+	// music3 = false;
 }
 
 function draw() {
@@ -353,7 +358,7 @@ function playMusic() {
 		ellipse(304, 60, 110);
 		pop();
 
-		music1 = true;
+		shared.music1 = true;
 	}
 
 	// play trumpet
@@ -364,7 +369,7 @@ function playMusic() {
 		ellipse(430, 75, 40);
 		pop();
 
-		music2 = true;
+		shared.music2 = true;
 	}
 
 	// play guitar
@@ -375,12 +380,12 @@ function playMusic() {
 		ellipse(390, 620, 40);
 		pop();
 
-		music3 = true;
+		shared.music3 = true;
 	}
 }
 
 function checkMusic() {
-	if (music1 === true && music2 === true &&  music3 === true) {
+	if (shared.music1 === true && shared.music2 === true &&  shared.music3 === true) {
 		push();
 		noStroke();
 		fill(255, 251, 0, 50);
