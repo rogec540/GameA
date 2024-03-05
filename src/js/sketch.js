@@ -29,7 +29,7 @@ let strokeColor;
 
 let quinqueFont;
 
-const TIMER_DURATION = 400000;
+const TIMER_DURATION = 10000;
 
 function preload() {
 	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
@@ -39,7 +39,7 @@ function preload() {
 		gameState: 'intro',
 		startTime: Date.now(),
 		displayTime: null,
-		clue3: false
+		clue3: false,
 	});
 	sharedMusic = partyLoadShared("shared", {
 		music1: false,
@@ -90,7 +90,8 @@ function draw() {
 		messages();
 		playMusic();
 		checkMusic();
-		endgame();
+		checkFinalSolve();
+		drawEnd();
 	}
 
 	if (shared.gameState === 'intro' && mouseIsPressed) {
@@ -412,6 +413,28 @@ function checkMusic() {
 	}
 }
 
-function endgame() {
-	
+function checkFinalSolve() {
+	if (shared.clue3 === true && my.x > 320 && my.x < 350 && my.y > 350 && my.y < 390 && keyIsDown(69)) {
+		shared.gameState = "win";
+	}
+}
+
+function drawEnd() {
+	if (shared.displayTime === '') {
+		background(bgPortal);
+		textFont('QuinqueFive');
+		textAlign(CENTER);
+		textSize(12);
+		textLeading(25);
+		fill('#000066');
+		text('Oh no! You failed to strike true harmony in time and now are stuck in the loop! Refresh and try again.', 200, 215, 250, 350);
+	} else if (shared.gameState === "win") {
+		background(bgPortal);
+		textFont('QuinqueFive');
+		textAlign(CENTER);
+		textSize(12);
+		textLeading(25);
+		fill('#000066');
+		text('We did it! We escaped in time and struck true harmony!', 200, 245, 250, 350);
+	}
 }
