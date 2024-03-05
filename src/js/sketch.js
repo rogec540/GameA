@@ -220,7 +220,7 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 365, 300);
 			text("The hands will tell you all you need to know.", 150, 385, 350);
 			text("Clue 2:", 150, 420, 300);
-			text("it\'s 5:25, 2 hours til showtime! Better start practicing.", 150, 440, 350);
+			text("it\'s 4:30, 2 hours til showtime! Time to start practicing.", 150, 440, 350);
 			pop();
 		}
 	} else my.keysReleasedSinceAction = true;
@@ -330,7 +330,7 @@ function messages() {
 		textSize(9);
 		textLeading(15);
 		text('Clue 2:', 50, 360, 300);
-		text('it\'s 5:25, 2 hours til showtime! Better start practicing.', 145, 390, 330);
+		text('it\'s 4:30, 2 hours til showtime! Time to start practicing.', 145, 390, 330);
 		text('(move away to close)', 160, 445, 300);
 		pop();
 
