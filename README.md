@@ -3,6 +3,9 @@
 
 Band Together is a 4-player video game made using the [p5party↗](https://p5party.org/)  library.
 
+<br>
+<br>
+<br>
 
 
 ## Instructions
@@ -13,14 +16,23 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 
 ### [CLICK HERE↗](https://rogec540.github.io/GameA/) TO PLAY!
 
-
+<br>
+<br>
+<br>
 
 ## Visuals
-![helo](https://stayhipp.com/wp-content/uploads/2020/01/helo-fish--440x240.jpg)
+![blue](./src/images/p1.gif) 
+&nbsp; &nbsp; &nbsp;
+![red](https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/e178f57e03d1b19.png) 
+&nbsp; &nbsp; &nbsp;
+![green](https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/29b14347f3e5a42.png)
+&nbsp; &nbsp; &nbsp;
+![yellow](https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/7f6439048177f89.png)
 
-![insert img name](insert image link)
 
-
+<br>
+<br>
+<br>
 
 ## External Assets
 ### Fonts

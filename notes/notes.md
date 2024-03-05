@@ -29,7 +29,8 @@ FEATURES WE WANT
 
 
 ## Bugs
-• glitching on certain items, player gets stuck?
+• glitching on certain items, player gets stuck?\
+~~• font isn't working, maybe need to fix path~~
 
 
 
