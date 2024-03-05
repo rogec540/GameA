@@ -71,10 +71,6 @@ function setup() {
 
 	clue1 = true;
 	clue2 = true;
-
-	// music1 = false;
-	// music2 = false;
-	// music3 = false;
 }
 
 function draw() {
@@ -134,7 +130,7 @@ function drawGame() {
 	textAlign(LEFT);
 	text('hold \'i\' for controls', 10, 570, 250, 600);
 	if (clue1 === false) {
-		text('\'shift\' for clues list', 2, 590, 250, 600);
+		text('\'shift\' for clue list', 2, 590, 250, 600);
 	}
 	pop();
 
@@ -340,6 +336,12 @@ function messages() {
 		pop();
 
 		clue2 = false;
+	}
+
+	//final chessboard clue
+	if(shared.music1 === true && shared.music2 === true && shared.music3 === true && my.x > 520 && my.x < 620 && my.y > 520 && my.y < 620 && keyIsDown(69)) {
+		fill('black');
+		rect(150, 150, 300, 300);
 	}
 }
 
