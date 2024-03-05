@@ -24,12 +24,9 @@ let p4;
 
 let music1, music2, music3;
 
-let r, g, b;
+let clue1, clue2;
 
 let strokeColor;
-
-// stashed changes
-let gameState = 'intro';
 
 let quinqueFont;
 
@@ -42,15 +39,16 @@ function preload() {
 	shared = partyLoadShared("globals", {
 		gameState: 'intro',
 		startTime: Date.now(),
-		displayTime: null
+		displayTime: null,
 	});
-	bg = loadImage('./assets/GameAMap2.png');
-	bgPortal = loadImage('./assets/portal.png');
 
-	p1 = loadImage("./assets/p1.png");
-    p2 = loadImage("./assets/p2.png");
-    p3 = loadImage("./assets/p3.png");
-	p4 = loadImage("./assets/p4.png");
+	bg = loadImage('./images/GameAMap2.png');
+	bgPortal = loadImage('./images/portal.png');
+
+	p1 = loadImage("./images/p1.png");
+    p2 = loadImage("./images/p2.png");
+    p3 = loadImage("./images/p3.png");
+	p4 = loadImage("./images/p4.png");
 
 }
 
@@ -61,11 +59,11 @@ function setup() {
 	my.y = 610;
 	move = 3;
 
-	r = random(255);
-	g = random(255);
-	b = random(255);
 	strokeColor = random(255);
 	textFont('QuinqueFive');
+
+	clue1 = true;
+	clue2 = true;
 
 	music1 = false;
 	music2 = false;
@@ -104,13 +102,18 @@ function drawIntroScreen() {
 	fill('#000066');
 	text('No way is this...where we had our first concert?', 200, 280, 250, 350);
 
-	//start button
+	//continue button
 	push();
 	fill('white');
 	rect(170, 438, 300, 38, 10);
 	fill('#000066');
 	text('-click to continue-', 180, 450, 300, 600);
 	pop();
+
+	//game timer
+	textSize(12);
+	fill('white');
+	text(shared.displayTime, 40, 620);
 }
 
 function drawGame() {
@@ -122,7 +125,10 @@ function drawGame() {
 	fill('white');
 	textSize(8);
 	textAlign(LEFT);
-	text('press \'i\' for controls', 10, 590, 250, 600);
+	text('hold \'i\' for controls', 10, 570, 250, 600);
+	if (clue1 === false) {
+		text('\'shift\' for clues list', 2, 590, 250, 600);
+	}
 	pop();
 
 	//game timer
@@ -141,7 +147,6 @@ function drawPlayers() {
 
 	//initialize players
 	for (const guest of guests) {
-		// fill(r, g, b);
 		fill(strokeColor);
 		rect(guest.x, guest.y, 20, 20);
 	}
@@ -155,11 +160,6 @@ function manageTimer() {
 	}
 }
 
-// allows player to change color of their square on mousePressed
-function mousePressed() {
-	strokeColor = color(random(255), random(255), random(255));
-}
-
 // uses common keys to move
 function checkPressedKeys() {
 	//movement WASD and arrow keys
@@ -171,13 +171,13 @@ function checkPressedKeys() {
 		my.y -= move;
 	} else if (keyIsDown(DOWN_ARROW) || keyIsDown(83 /*s*/)) {
 		my.y += move;
-	} else if (keyIsDown (73)) {  //controls window
+	} else if (keyIsDown (73)) {  //controls panel
 		push();
 		textAlign(LEFT);
 		
 		fill('white');
 		strokeWeight(3);
-		rect(145, 200, 320, 180, 10);
+		rect(145, 200, 320, 140, 10);
 
 		fill('black');
 		textStyle(BOLD);
@@ -186,18 +186,42 @@ function checkPressedKeys() {
 		text('WASD or arrow keys to move', 165, 230);
 		text('\'E\' to interact', 160, 270);
 		text('\'Ctrl\' to reset position', 160, 310);
-		text('click to change colors', 165, 350);
 		pop();
-	} else my.keysReleasedSinceAction = true;
-}
+	} else if (keyIsDown(SHIFT)) {
+		if (clue1 === false && clue2 === true) {
+			push();
+			strokeWeight(3);
+			fill('white');
+			rect(134, 350, 340, 120, 10);
+			pop();
 
-function keyPressed() {
-	//reset position with 'Ctrl' key
-	if (keyCode === CONTROL) {
-		my.x = 294;
-		my.y = 610;
-		redraw();
-	}
+			push();
+			fill('black');
+			textSize(8);
+			textLeading(12);
+			textAlign(LEFT);
+			text("Clue 1:", 150, 370, 300);
+			text("The hands will tell you all you need to know.", 150, 390, 350);
+			pop();
+		} else if (clue1  === false && clue2 === false) {
+			push();
+			strokeWeight(3);
+			fill('white');
+			rect(134, 350, 340, 120, 10);
+			pop();
+
+			push();
+			fill('black');
+			textSize(8);
+			textLeading(12);
+			textAlign(LEFT);
+			text("Clue 1:", 150, 365, 300);
+			text("The hands will tell you all you need to know.", 150, 385, 350);
+			text("Clue 2:", 150, 420, 300);
+			text("it\'s 5:25, 2 hours til showtime! Better start practicing.", 150, 440, 350);
+			pop();
+		}
+	} else my.keysReleasedSinceAction = true;
 }
 
 function keyPressed() {
@@ -270,6 +294,51 @@ function messages() {
 		textFont('QuinqueFive');
 		textSize(8);
 		text("It's locked!", 313, 598);
+	}
+
+	//starting clue
+	if (shared.gameState === 'playing' && clue1 === true) {
+		push();
+		strokeWeight(3);
+		fill('white');
+		rect(134, 350, 340, 120, 10);
+		pop();
+
+		push();
+		fill('black');
+		textSize(10);
+		textLeading(20);
+		text("Clue 1:", 50, 360, 300);
+		text("The hands will tell you all you need to know.", 160, 390, 300);
+		text("(Double click to close)", 160, 445, 300);
+		pop();
+	} 
+
+	//clock clue
+	if (my.x > 30 && my.x < 110 && my.y < 75) {
+		push();
+		strokeWeight(3);
+		fill('white');
+		ellipse(300, 200, 200);
+		rect(134, 350, 340, 120, 10);
+		pop();
+
+		push();
+		fill('black');
+		textSize(9);
+		textLeading(15);
+		text('Clue 2:', 50, 360, 300);
+		text('it\'s 5:25, 2 hours til showtime! Better start practicing.', 145, 390, 330);
+		text('(move away to close)', 160, 445, 300);
+		pop();
+
+		clue2 = false;
+	}
+}
+
+function doubleClicked() {
+	if (clue1 === true) {
+		clue1 = false;
 	}
 }
 
