@@ -16,11 +16,8 @@ let bgPortal;
 let guests, my, shared, sharedMusic;
 let move;
 
-let p1;
-let p2;
-let p3;
-let p4;
-
+let characters = [];
+let randomChar;
 
 let music1, music2, music3;
 
@@ -51,10 +48,10 @@ function preload() {
 	bg = loadImage('./images/GameAMap.png');
 	bgPortal = loadImage('./images/portal.png');
 
-	p1 = loadImage("./images/p1.png");
-    p2 = loadImage("./images/p2.png");
-    p3 = loadImage("./images/p3.png");
-	p4 = loadImage("./images/p4.png");
+	characters[0] = loadImage("./images/p1.png");
+    characters[1] = loadImage("./images/p2.png");
+    characters[2] = loadImage("./images/p3.png");
+	characters[3] = loadImage("./images/p4.png");
 
 	clockface = loadImage("./images/clockface.jpg");
 }
@@ -71,6 +68,8 @@ function setup() {
 
 	clue1 = true;
 	clue2 = true;
+
+	randomChar = random(characters);
 }
 
 function draw() {
@@ -150,8 +149,7 @@ function drawPlayers() {
 
 	//initialize players
 	for (const guest of guests) {
-		fill(strokeColor);
-		rect(guest.x, guest.y, 20, 20);
+		image(randomChar, guest.x, guest.y, 35, 45);
 	}
 }
 
