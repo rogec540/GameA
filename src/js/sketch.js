@@ -25,6 +25,7 @@ let p4;
 let music1, music2, music3;
 
 let clue1, clue2;
+let clockface;
 
 let strokeColor;
 
@@ -50,6 +51,7 @@ function preload() {
     p3 = loadImage("./images/p3.png");
 	p4 = loadImage("./images/p4.png");
 
+	clockface = loadImage("./images/clockface.jpg");
 }
 
 function setup() {
@@ -319,7 +321,7 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill('white');
-		ellipse(300, 200, 200);
+		image(clockface, 210, 150, 180, 180);
 		rect(134, 350, 340, 120, 10);
 		pop();
 
