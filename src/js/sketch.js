@@ -42,7 +42,7 @@ function preload() {
 		displayTime: null,
 	});
 
-	bg = loadImage('./images/GameAMap2.png');
+	bg = loadImage('./images/GameAMap.png');
 	bgPortal = loadImage('./images/portal.png');
 
 	p1 = loadImage("./images/p1.png");
