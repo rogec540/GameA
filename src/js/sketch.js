@@ -13,6 +13,7 @@
 
 let bg;
 let bgPortal;
+let startScreen;
 let guests, my, shared, sharedMusic;
 let move;
 
@@ -36,7 +37,7 @@ function preload() {
 	guests = partyLoadGuestShareds();
 	my = partyLoadMyShared();
 	shared = partyLoadShared("globals", {
-		gameState: 'intro',
+		gameState: 'title',
 		startTime: Date.now(),
 		displayTime: null,
 		clue3: false,
@@ -49,6 +50,7 @@ function preload() {
 
 	bg = loadImage('./images/GameAMap.png');
 	bgPortal = loadImage('./images/portal.png');
+	startScreen = loadImage('./images/start-screen.jpg');
 
 	characters[0] = loadImage("./images/p1.png");
     characters[1] = loadImage("./images/p2.png");
@@ -80,7 +82,9 @@ function draw() {
 	// update timer based on host
 	if (partyIsHost()) manageTimer();
 
-	if (shared.gameState === 'intro') {
+	if (shared.gameState === 'title') {
+		drawTitleScreen();
+	} else if (shared.gameState === "intro") {
 		drawIntroScreen();
 	} else if (shared.gameState === 'playing') {
 		drawGame();
@@ -94,9 +98,39 @@ function draw() {
 		drawEnd();
 	}
 
+	if (shared.gameState === 'title' && keyIsPressed === true) {
+		shared.gameState = 'intro'
+	}
 	if (shared.gameState === 'intro' && mouseIsPressed) {
 		shared.gameState = 'playing';
 	}
+}
+
+function drawTitleScreen() {
+	background(startScreen);
+
+	//brief instructions
+	push();
+	fill("#cccccc");
+	strokeWeight(2);
+	rect(120, 295, 410, 85, 5);
+	fill('black');
+	textSize(8);
+	textAlign(CENTER);
+	textLeading(12);
+	text('Explore the room using WASD or arrow keys, unlock clues by interacting with items around you, solve the puzzle, and escape with your team before time runs out to win!', 130, 310, 400, 600);
+	pop();
+
+	//continue button
+	push();
+	fill('white');
+	strokeWeight(2);
+	rect(170, 440, 300, 38, 5);
+	fill('black');
+	textSize(9);
+	textStyle(BOLD);
+	text('-press any key to start-', 190, 455, 300, 600);
+	pop();
 }
 
 function drawIntroScreen() {
@@ -113,8 +147,9 @@ function drawIntroScreen() {
 	//continue button
 	push();
 	fill('white');
+	strokeWeight(2);
 	rect(170, 438, 300, 38, 10);
-	fill('#000066');
+	fill('black');
 	text('-click to continue-', 180, 450, 300, 600);
 	pop();
 
