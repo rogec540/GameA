@@ -21,6 +21,8 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 <br>
 
 ## Visuals
+<img src="./src/images/game-title.gif" alt="background" width="700"/>
+
 <img src="./src/images/GameAMap.png" alt="background" width="300"/> &nbsp; <img src="./src/images/portal.png" alt="background" height="300"/>
 
 
