@@ -18,7 +18,7 @@ let guests, my, shared, sharedMusic;
 let move;
 
 let characters = [];
-let randomChar;
+let characterId;
 
 let music1, music2, music3;
 
@@ -75,7 +75,7 @@ function setup() {
 	clue1 = true;
 	clue2 = true;
 
-	randomChar = random(characters);
+	my.characterId = floor(random(4));
 }
 
 function draw() {
@@ -190,7 +190,7 @@ function drawPlayers() {
 
 	//initialize players
 	for (const guest of guests) {
-		image(randomChar, guest.x, guest.y, 25, 35);
+		image(characters[guest.characterId], guest.x, guest.y, 25, 35);
 	}
 }
 
