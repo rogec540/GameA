@@ -30,6 +30,7 @@ FEATURES WE WANT
 
 ## Bugs
 • glitching on certain items, player gets stuck?\
+• everyone loads as same character
 ~~• font isn't working, maybe need to fix path~~
 
 
