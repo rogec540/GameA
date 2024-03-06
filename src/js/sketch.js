@@ -1,8 +1,5 @@
 // GameA WIP from Team One - Charlotte, Chloe, and Emma
 
-// Used Tiled to create the map; art from users on OpenGameArt.org and OpenClipArt.org
-// Artists: Jana Ochse, Lanea Zimmerman, Tuomo Untinen, William Thompson, @papapishu, @Gerald_G
-
 // The beginnings of an explorable room -- attempting an interactive puzzle or escape game
 // You are musicians who wake up stuck in time loop at the site of their first concert.
 
