@@ -28,17 +28,17 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 
 <img src="./src/images/p1.gif" alt="blue" width="150"/> <img src="./src/images/p2.gif" alt="red" width="150"/> <img src="./src/images/p3.gif" alt="green" width="150"/> <img src="./src/images/p4.gif" alt="yellow" width="150"/>
 
+
 <br>
 <br>
 <br>
 
 ## External Assets
 ### Fonts
-- Typeface: QUINQUEFIVE\
+- Typeface: QUINQUEFIVE
     - designed by [GGBotNet↗](https://www.ggbot.net/)
     - Download QUINQUEFIVE [here↗](https://ggbot.itch.io/quinquefive-font)
     - License: SIL Open Font License, Version 1.1
-- Background image made using [pixel set] from Tiled
 
 ### Audio 
 - Guitar SFX
