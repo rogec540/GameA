@@ -30,11 +30,11 @@ let quinqueFont;
 const TIMER_DURATION = 400000;
 
 function preload() {
-	partyConnect('wss://demoserver.p5party.org', 'team1_gameA');
+	partyConnect("wss://demoserver.p5party.org", "team1_gameA");
 	guests = partyLoadGuestShareds();
 	my = partyLoadMyShared();
 	shared = partyLoadShared("globals", {
-		gameState: 'title',
+		gameState: "title",
 		startTime: Date.now(),
 		displayTime: null,
 		clue3: false,
@@ -43,15 +43,15 @@ function preload() {
 		music1: false,
 		music2: false,
 		music3: false,
-	})
+	});
 
-	bg = loadImage('./images/GameAMap.png');
-	bgPortal = loadImage('./images/portal.png');
-	startScreen = loadImage('./images/start-screen.jpg');
+	bg = loadImage("./images/map.png");
+	bgPortal = loadImage("./images/portal.png");
+	startScreen = loadImage("./images/start_screen.jpg");
 
 	characters[0] = loadImage("./images/p1.png");
-    characters[1] = loadImage("./images/p2.png");
-    characters[2] = loadImage("./images/p3.png");
+	characters[1] = loadImage("./images/p2.png");
+	characters[2] = loadImage("./images/p3.png");
 	characters[3] = loadImage("./images/p4.png");
 
 	clockface = loadImage("./images/clockface.jpg");
@@ -67,7 +67,7 @@ function setup() {
 	move = 3;
 
 	strokeColor = random(255);
-	textFont('QuinqueFive');
+	textFont("QuinqueFive");
 
 	clue1 = true;
 	clue2 = true;
@@ -79,11 +79,11 @@ function draw() {
 	// update timer based on host
 	if (partyIsHost()) manageTimer();
 
-	if (shared.gameState === 'title') {
+	if (shared.gameState === "title") {
 		drawTitleScreen();
 	} else if (shared.gameState === "intro") {
 		drawIntroScreen();
-	} else if (shared.gameState === 'playing') {
+	} else if (shared.gameState === "playing") {
 		drawGame();
 		drawPlayers();
 		checkPressedKeys();
@@ -95,11 +95,11 @@ function draw() {
 		drawEnd();
 	}
 
-	if (shared.gameState === 'title' && keyIsPressed === true) {
-		shared.gameState = 'intro'
+	if (shared.gameState === "title" && keyIsPressed === true) {
+		shared.gameState = "intro";
 	}
-	if (shared.gameState === 'intro' && mouseIsPressed) {
-		shared.gameState = 'playing';
+	if (shared.gameState === "intro" && mouseIsPressed) {
+		shared.gameState = "playing";
 	}
 }
 
@@ -111,48 +111,54 @@ function drawTitleScreen() {
 	fill("#cccccc");
 	strokeWeight(2);
 	rect(120, 295, 410, 85, 5);
-	fill('black');
+	fill("black");
 	textSize(8);
 	textAlign(CENTER);
 	textLeading(12);
-	text('Explore the room using WASD or arrow keys, unlock clues by interacting with items around you, solve the puzzle, and escape with your team before time runs out to win!', 130, 310, 400, 600);
+	text(
+		"Explore the room using WASD or arrow keys, unlock clues by interacting with items around you, solve the puzzle, and escape with your team before time runs out to win!",
+		130,
+		310,
+		400,
+		600
+	);
 	pop();
 
 	//continue button
 	push();
-	fill('white');
+	fill("white");
 	strokeWeight(2);
 	rect(170, 440, 300, 38, 5);
-	fill('black');
+	fill("black");
 	textSize(9);
 	textStyle(BOLD);
-	text('-press any key to start-', 190, 455, 300, 600);
+	text("-press any key to start-", 190, 455, 300, 600);
 	pop();
 }
 
 function drawIntroScreen() {
 	background(bgPortal);
-	textFont('QuinqueFive');
+	textFont("QuinqueFive");
 	textAlign(CENTER);
 	textSize(12);
 	textLeading(25);
-	fill('#000066');
-	text('OMG?! We are being teleported!', 200, 165, 250, 350);
-	fill('#000066');
-	text('No way is this...where we had our first concert?', 200, 280, 250, 350);
+	fill("#000066");
+	text("OMG?! We are being teleported!", 200, 165, 250, 350);
+	fill("#000066");
+	text("No way is this...where we had our first concert?", 200, 280, 250, 350);
 
 	//continue button
 	push();
-	fill('white');
+	fill("white");
 	strokeWeight(2);
 	rect(170, 438, 300, 38, 10);
-	fill('black');
-	text('-click to continue-', 180, 450, 300, 600);
+	fill("black");
+	text("-click to continue-", 180, 450, 300, 600);
 	pop();
 
 	//game timer
 	textSize(12);
-	fill('white');
+	fill("white");
 	text(shared.displayTime, 40, 620);
 }
 
@@ -162,18 +168,18 @@ function drawGame() {
 
 	//'press i for controls' message bottom left
 	push();
-	fill('white');
+	fill("white");
 	textSize(8);
 	textAlign(LEFT);
-	text('hold \'i\' for controls', 10, 570, 250, 600);
+	text("hold 'i' for controls", 10, 570, 250, 600);
 	if (clue1 === false) {
-		text('\'shift\' for clue list', 2, 590, 250, 600);
+		text("'shift' for clue list", 2, 590, 250, 600);
 	}
 	pop();
 
 	//game timer
 	textSize(12);
-	fill('white');
+	fill("white");
 	text(shared.displayTime, 40, 620);
 }
 
@@ -210,54 +216,60 @@ function checkPressedKeys() {
 		my.y -= move;
 	} else if (keyIsDown(DOWN_ARROW) || keyIsDown(83 /*s*/)) {
 		my.y += move;
-	} else if (keyIsDown (73)) {  //controls panel
+	} else if (keyIsDown(73)) {
+		//controls panel
 		push();
 		textAlign(LEFT);
-		
-		fill('white');
+
+		fill("white");
 		strokeWeight(3);
 		rect(145, 200, 320, 140, 10);
 
-		fill('black');
+		fill("black");
 		textStyle(BOLD);
-		textFont('QuinqueFive');
+		textFont("QuinqueFive");
 		textSize(8);
-		text('WASD or arrow keys to move', 165, 230);
-		text('\'E\' to interact', 160, 270);
-		text('\'Ctrl\' to reset position', 160, 310);
+		text("WASD or arrow keys to move", 165, 230);
+		text("'E' to interact", 160, 270);
+		text("'Ctrl' to reset position", 160, 310);
 		pop();
 	} else if (keyIsDown(SHIFT)) {
 		if (clue1 === false && clue2 === true) {
 			push();
 			strokeWeight(3);
-			fill('white');
+			fill("white");
 			rect(134, 350, 340, 120, 10);
 			pop();
 
 			push();
-			fill('black');
+			fill("black");
 			textSize(8);
 			textLeading(12);
 			textAlign(LEFT);
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (clue1  === false && clue2 === false) {
+		} else if (clue1 === false && clue2 === false) {
 			push();
 			strokeWeight(3);
-			fill('white');
+			fill("white");
 			rect(134, 350, 340, 120, 10);
 			pop();
 
 			push();
-			fill('black');
+			fill("black");
 			textSize(8);
 			textLeading(12);
 			textAlign(LEFT);
 			text("Clue 1:", 150, 365, 300);
 			text("The hands will tell you all you need to know.", 150, 385, 350);
 			text("Clue 2:", 150, 420, 300);
-			text("it\'s 4:30, 2 hours til showtime! Time to start practicing.", 150, 440, 350);
+			text(
+				"it's 4:30, 2 hours til showtime! Time to start practicing.",
+				150,
+				440,
+				350
+			);
 			pop();
 		}
 	} else my.keysReleasedSinceAction = true;
@@ -326,68 +338,87 @@ function checkBoundaries() {
 function messages() {
 	// 'door locked' message
 	if (my.x > 285 && my.x < 305 && my.y > 610) {
-		fill('white');
+		fill("white");
 		rect(248, 580, 125, 30, 5);
 
-		fill('black');
-		textFont('QuinqueFive');
+		fill("black");
+		textFont("QuinqueFive");
 		textSize(8);
 		text("It's locked!", 313, 598);
 	}
 
 	//starting clue
-	if (shared.gameState === 'playing' && clue1 === true) {
+	if (shared.gameState === "playing" && clue1 === true) {
 		push();
 		strokeWeight(3);
-		fill('white');
+		fill("white");
 		rect(134, 350, 340, 120, 10);
 		pop();
 
 		push();
-		fill('black');
+		fill("black");
 		textSize(10);
 		textLeading(20);
 		text("Clue 1:", 50, 360, 300);
 		text("The hands will tell you all you need to know.", 160, 390, 300);
 		text("(Double click to close)", 160, 445, 300);
 		pop();
-	} 
+	}
 
 	//clock clue
 	if (my.x > 30 && my.x < 110 && my.y < 75) {
 		push();
 		strokeWeight(3);
-		fill('white');
+		fill("white");
 		image(clockface, 210, 150, 180, 180);
 		rect(134, 350, 340, 120, 10);
 		pop();
 
 		push();
-		fill('black');
+		fill("black");
 		textSize(9);
 		textLeading(15);
-		text('Clue 2:', 50, 360, 300);
-		text('it\'s 4:30, 2 hours til showtime! Time to start practicing.', 145, 390, 330);
-		text('(move away to close)', 160, 445, 300);
+		text("Clue 2:", 50, 360, 300);
+		text(
+			"it's 4:30, 2 hours til showtime! Time to start practicing.",
+			145,
+			390,
+			330
+		);
+		text("(move away to close)", 160, 445, 300);
 		pop();
 
 		clue2 = false;
 	}
 
 	//final chessboard clue
-	if(shared.music1 === true && shared.music2 === true && shared.music3 === true && my.x > 520 && my.x < 620 && my.y > 520 && my.y < 620 && keyIsDown(69)) {
+	if (
+		shared.music1 === true &&
+		shared.music2 === true &&
+		shared.music3 === true &&
+		my.x > 520 &&
+		my.x < 620 &&
+		my.y > 520 &&
+		my.y < 620 &&
+		keyIsDown(69)
+	) {
 		push();
 		strokeWeight(3);
-		fill('white');
+		fill("white");
 		image(chess, 210, 140, 200, 200);
 		rect(134, 350, 340, 120, 10);
 		pop();
 
 		push();
-		fill('black');
+		fill("black");
 		textSize(10);
 		textLeading(15);
-		text('Why is the king sitting out of place? Must be the final clue.', 145, 390, 330);
+		text(
+			"Why is the king sitting out of place? Must be the final clue.",
+			145,
+			390,
+			330
+		);
 		pop();
 	}
 
@@ -436,7 +467,11 @@ function playMusic() {
 }
 
 function checkMusic() {
-	if (shared.music1 === true && shared.music2 === true &&  shared.music3 === true) {
+	if (
+		shared.music1 === true &&
+		shared.music2 === true &&
+		shared.music3 === true
+	) {
 		push();
 		noStroke();
 		fill(255, 251, 0, 50);
@@ -446,27 +481,46 @@ function checkMusic() {
 }
 
 function checkFinalSolve() {
-	if (shared.clue3 === true && my.x > 320 && my.x < 350 && my.y > 350 && my.y < 390 && keyIsDown(69)) {
+	if (
+		shared.clue3 === true &&
+		my.x > 320 &&
+		my.x < 350 &&
+		my.y > 350 &&
+		my.y < 390 &&
+		keyIsDown(69)
+	) {
 		shared.gameState = "win";
 	}
 }
 
 function drawEnd() {
-	if (shared.displayTime === '') {
+	if (shared.displayTime === "") {
 		background(bgPortal);
-		textFont('QuinqueFive');
+		textFont("QuinqueFive");
 		textAlign(CENTER);
 		textSize(12);
 		textLeading(25);
-		fill('#000066');
-		text('Oh no! You failed to strike true harmony in time and now are stuck in the loop! Refresh and try again.', 200, 215, 250, 350);
+		fill("#000066");
+		text(
+			"Oh no! You failed to strike true harmony in time and now are stuck in the loop! Refresh and try again.",
+			200,
+			215,
+			250,
+			350
+		);
 	} else if (shared.gameState === "win") {
 		background(bgPortal);
-		textFont('QuinqueFive');
+		textFont("QuinqueFive");
 		textAlign(CENTER);
 		textSize(12);
 		textLeading(25);
-		fill('#000066');
-		text('We did it! We escaped in time and struck true harmony!', 200, 245, 250, 350);
+		fill("#000066");
+		text(
+			"We did it! We escaped in time and struck true harmony!",
+			200,
+			245,
+			250,
+			350
+		);
 	}
 }

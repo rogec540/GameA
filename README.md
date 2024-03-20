@@ -1,15 +1,16 @@
 # Band Together [^1]
+
 #### Presented by Team Crikey!
 
-Band Together is a 4-player video game made using the [p5party↗](https://p5party.org/)  library.
+Band Together is a 4-player video game made using the [p5party↗](https://p5party.org/) library.
 
 <br>
 <br>
 <br>
-
 
 ## Instructions
-You are part of a group of musicians who are mysteriously transported back to the site of your first concert together. 
+
+You are part of a group of musicians who are mysteriously transported back to the site of your first concert together.
 Figure out how to return to the present, or remain forever trapped in a symphony of time!
 
 Explore the room using WASD or arrow keys, unlock clues by interacting with items around you, solve the puzzle, and escape with your team before time runs out to win!
@@ -21,47 +22,50 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 <br>
 
 ## Visuals
-<img src="./src/images/game-title.gif" alt="background" width="700"/>
 
-<img src="./src/images/GameAMap.png" alt="background" width="300"/> &nbsp; <img src="./src/images/portal.png" alt="background" height="300"/>
+<img src="./src/images/game_title.gif" alt="background" width="700"/>
 
+<img src="./src/images/map.png" alt="background" width="300"/> &nbsp; <img src="./src/images/portal.png" alt="background" height="300"/>
 
 <img src="./src/images/p1.gif" alt="blue" width="150"/> <img src="./src/images/p2.gif" alt="red" width="150"/> <img src="./src/images/p3.gif" alt="green" width="150"/> <img src="./src/images/p4.gif" alt="yellow" width="150"/>
-
 
 <br>
 <br>
 <br>
 
 ## External Assets
-### Fonts
-- Typeface: QUINQUEFIVE
-    - designed by [GGBotNet↗](https://www.ggbot.net/)
-    - Download QUINQUEFIVE [here↗](https://ggbot.itch.io/quinquefive-font)
-    - License: SIL Open Font License, Version 1.1
 
-### Audio 
+### Fonts
+
+- Typeface: QUINQUEFIVE
+  - designed by [GGBotNet↗](https://www.ggbot.net/)
+  - Download QUINQUEFIVE [here↗](https://ggbot.itch.io/quinquefive-font)
+  - License: SIL Open Font License, Version 1.1
+
+### Audio
+
 - Guitar SFX
-    - From:
-    - [link here]()
+  - From:
+  - [link here]()
 - Piano SFX
-    - From:
-    - [link here]()
+  - From:
+  - [link here]()
 - Trumpet SFX
-    - From:
-    - [link here]()
+  - From:
+  - [link here]()
 
 <br>
 <br>
 <br>
 
 ## Support/Contact
+
 ### Team Crikey
+
 **Charlotte Rogers** Available on Github @ [rogec540↗](https://github.com/rogec540)\
 **Chloe Yiu** Available on Github @ [yiuchl↗](https://github.com/yiuchl)\
 **Emma Wu** Available on Github @ [ewwamu↗](https://github.com/ewwamu)
 
 <br>
 
-[^1]: *Made for Spring 2024 Collab: P5 Party by Charlotte Rogers, Chloe Yiu, and Emma Wu*
-
+[^1]: _Made for Spring 2024 Collab: P5 Party by Charlotte Rogers, Chloe Yiu, and Emma Wu_
