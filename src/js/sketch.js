@@ -15,6 +15,7 @@ let guests, my, shared, sharedMusic;
 let move;
 
 let characters = [];
+let charactersleft = [];
 let characterId;
 
 let music1, music2, music3;
@@ -53,6 +54,11 @@ function preload() {
 	characters[1] = loadImage("./images/p2.png");
 	characters[2] = loadImage("./images/p3.png");
 	characters[3] = loadImage("./images/p4.png");
+
+	charactersleft[0] = loadImage("./images/p1-left.png");
+	charactersleft[1] = loadImage("./images/p2-left.png");
+	charactersleft[2] = loadImage("./images/p3-left.png");
+	charactersleft[3] = loadImage("./images/p4-left.png");
 
 	clockface = loadImage("./images/clockface.jpg");
 
@@ -194,6 +200,12 @@ function drawPlayers() {
 	//initialize players
 	for (const guest of guests) {
 		image(characters[guest.characterId], guest.x, guest.y, 25, 35);
+		// turn player left and right
+		if (keyIsDown(LEFT_ARROW) || keyIsDown(65 /*a*/)) {
+			image(charactersleft[guest.characterId], guest.x, guest.y, 25, 35);
+		  } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68 /*d*/)) {
+			image(characters[guest.characterId], guest.x, guest.y, 25, 35);
+		  }
 	}
 }
 
