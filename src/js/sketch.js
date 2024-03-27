@@ -88,6 +88,10 @@ function setup() {
 
 	clue1 = true;
 	clue2 = true;
+	clue3 = true;
+	clue4 = true;
+	clue5 = true;
+
 
 	my.characterId = floor(random(4));
 }
@@ -108,7 +112,7 @@ function draw() {
 		messages();
 		nearClueLocation();
 		playMusic();
-		checkMusic();
+		// checkMusic();
 		checkFinalSolve();
 		drawEnd();
 	}
@@ -296,7 +300,7 @@ function checkPressedKeys() {
 				350
 			);
 			pop();
-		} else if (clue1 === false && clue2 === false && clue3 === false) {
+		} else if (clue2 === false && clue3 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -321,7 +325,7 @@ function checkPressedKeys() {
 			text(
 				"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
 				150,
-				380,
+				500,
 				330
 			);
 				pop();
@@ -339,11 +343,11 @@ function keyPressed() {
 }
 
 function keyReleased() {
-	if (my.x > 220 && my.x < 360 && my.y < 100) {
+	if (playerLandmark = "piano") {
 		nearClueForMusic = true;
-	} else if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85) {
+	} else if (playerLandmark = "trumpet") {
 		nearClueForMusic = true;
-	} else if (my.x > 360 && my.x < 400 && my.y > 600) {
+	} else if (playerLandmark = "guitar") {
 		nearClueForMusic = true;
 	}
 
@@ -578,15 +582,15 @@ function doubleClicked() {
 let playerLandmark = "none";
 function nearClueLocation() {
 	// play piano
-	if (my.x > 220 && my.x < 360 && my.y < 100) {
+	if (my.x > 220 && my.x < 360 && my.y < 100 && my.y > 0) {
 		playerLandmark = "piano";
 	}
 	// near trumpet
-	else if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85) {
+	else if (my.x > 405 && my.x < 445 && my.y < 105 && my.y > 85) {
 		playerLandmark = "trumpet";
 	}
 	// near guitar
-	else if (my.x > 360 && my.x < 400 && my.y > 600) {
+	else if (my.x > 355 && my.x < 415 && my.y < 640 && my.y > 580) {
 		playerLandmark = "guitar";
 	} else {
 		playerLandmark = "none";
@@ -595,7 +599,7 @@ function nearClueLocation() {
 
 function playMusic() {
 	// play piano
-	if (my.x > 220 && my.x < 360 && my.y < 100 && musicPlayState) {
+	if (playerLandmark = "piano" && musicPlayState) {
 		console.log("played music");
 		push();
 		// fill(255, 251, 0, 30);
@@ -604,53 +608,52 @@ function playMusic() {
 		pop();
 
 		music1.play();
-		// music1.setLoop(false);
-		// music1.stop();
-		// music1.noLoop();
 		musicPlayState = false;
 		nearClueForMusic = false;
 	}
 
 	// play trumpet
-	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && musicPlayState) {
+	if (playerLandmark = "trumpet" && musicPlayState) {
 		push();
 		fill(255, 251, 0, 50);
 		noStroke();
 		ellipse(430, 75, 40);
 		pop();
 
-		shared.music2 = true;
+		//shared.music2 = true;
+		music2.play();
 		musicPlayState = false;
 		nearClueForMusic = false;
 	}
 
 	// play guitar
-	if (my.x > 360 && my.x < 400 && my.y > 600 && musicPlayState) {
+	if (playerLandmark = "guitar" && musicPlayState) {
 		push();
 		fill(255, 251, 0, 50);
 		noStroke();
 		ellipse(390, 620, 40);
 		pop();
 
-		shared.music3 = true;
+		//shared.music3 = true;
+		music3.play();
 		musicPlayState = false;
 		nearClueForMusic = false;
 	}
 }
 
-function checkMusic() {
-	if (
-		shared.music1 === true &&
-		shared.music2 === true &&
-		shared.music3 === true
-	) {
-		push();
-		noStroke();
-		fill(255, 251, 0, 50);
-		ellipse(592, 585, 100);
-		pop();
-	}
-}
+// function checkMusic() {
+// 	if (
+// 		shared.music1 === true &&
+// 		shared.music2 === true &&
+// 		shared.music3 === true
+// 	) {
+// 		push();
+// 		noStroke();
+// 		fill(255, 251, 0, 50);
+// 		ellipse(592, 585, 100);
+// 		pop();
+// 	}
+// }
 
 function checkFinalSolve() {
 	if (
