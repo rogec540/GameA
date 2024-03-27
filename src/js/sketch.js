@@ -585,7 +585,7 @@ function nearClueLocation() {
 		playerLandmark = "piano";
 	}
 	// near trumpet
-	else if (my.x > 405 && my.x < 445 && my.y < 105 && my.y > 85) {
+	else if (my.x > 390 && my.x < 450 && my.y < 75 && my.y > 30) {
 		playerLandmark = "trumpet";
 	}
 	// near guitar
