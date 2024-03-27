@@ -53,9 +53,9 @@ function preload() {
 	// });
 
 	// music1 = false;
-	music1 = loadSound("./sounds/snippets/sound_snippet_4.mp3");
-	// music2 = loadSound();
-	// music3 = loadSound();
+	music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
+	music2 = loadSound("./sounds/snippets/sound_snippet.mp4");
+	music3 = loadSound("./sounds/snippets/sound_snippet_4.mp3");
 
 	bg = loadImage("./images/map.png");
 	bgPortal = loadImage("./images/portal.png");
@@ -300,7 +300,7 @@ function checkPressedKeys() {
 				350
 			);
 			pop();
-		} else if (clue2 === false && clue3 === false) {
+		} else if (clue3 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -343,11 +343,11 @@ function keyPressed() {
 }
 
 function keyReleased() {
-	if (playerLandmark = "piano") {
+	if (playerLandmark === "piano") {
 		nearClueForMusic = true;
-	} else if (playerLandmark = "trumpet") {
+	} else if (playerLandmark === "trumpet") {
 		nearClueForMusic = true;
-	} else if (playerLandmark = "guitar") {
+	} else if (playerLandmark === "guitar") {
 		nearClueForMusic = true;
 	}
 
@@ -532,8 +532,7 @@ function messages() {
 				150,
 				378,
 				330
-			);
-			text("(move away to close)", 160, 452, 300);
+			)
 			pop();
 
 		clue5 = false;
@@ -599,7 +598,7 @@ function nearClueLocation() {
 
 function playMusic() {
 	// play piano
-	if (playerLandmark = "piano" && musicPlayState) {
+	if (playerLandmark === "piano" && musicPlayState) {
 		console.log("played music");
 		push();
 		// fill(255, 251, 0, 30);
@@ -613,11 +612,11 @@ function playMusic() {
 	}
 
 	// play trumpet
-	if (playerLandmark = "trumpet" && musicPlayState) {
+	if (playerLandmark === "trumpet" && musicPlayState) {
 		push();
-		fill(255, 251, 0, 50);
-		noStroke();
-		ellipse(430, 75, 40);
+		// fill(255, 251, 0, 50);
+		// noStroke();
+		// ellipse(430, 75, 40);
 		pop();
 
 		//shared.music2 = true;
@@ -627,11 +626,11 @@ function playMusic() {
 	}
 
 	// play guitar
-	if (playerLandmark = "guitar" && musicPlayState) {
+	if (playerLandmark === "guitar" && musicPlayState) {
 		push();
-		fill(255, 251, 0, 50);
-		noStroke();
-		ellipse(390, 620, 40);
+		// fill(255, 251, 0, 50);
+		// noStroke();
+		// ellipse(390, 620, 40);
 		pop();
 
 		//shared.music3 = true;
