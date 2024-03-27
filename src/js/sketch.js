@@ -22,6 +22,7 @@ let characterId;
 
 let music1, music2, music3;
 let musicPlayState = false;
+let nearClueForMusic = false;
 
 let clue1, clue2, clue3, clue4, clue5, clue6;
 let clockface;
@@ -211,9 +212,9 @@ function drawPlayers() {
 		// turn player left and right
 		if (keyIsDown(LEFT_ARROW) || keyIsDown(65 /*a*/)) {
 			image(charactersleft[guest.characterId], guest.x, guest.y, 25, 35);
-		  } else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68 /*d*/)) {
+		} else if (keyIsDown(RIGHT_ARROW) || keyIsDown(68 /*d*/)) {
 			image(characters[guest.characterId], guest.x, guest.y, 25, 35);
-		  }
+		}
 	}
 }
 
@@ -301,6 +302,20 @@ function keyPressed() {
 		my.x = 294;
 		my.y = 610;
 		redraw();
+	}
+}
+
+function keyReleased() {
+	if (my.x > 220 && my.x < 360 && my.y < 100) {
+		nearClueForMusic = true;
+	} else if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85) {
+		nearClueForMusic = true;
+	} else if (my.x > 360 && my.x < 400 && my.y > 600) {
+		nearClueForMusic = true;
+	}
+
+	if (keyCode === 69 && nearClueForMusic) {
+		musicPlayState = true;
 	}
 }
 
@@ -412,12 +427,7 @@ function messages() {
 	}
 
 	// piano clue
-	if (
-		my.x > 220 &&
-		my.x < 360 &&
-		my.y < 100 &&
-		keyIsDown(69)
-		) {
+	if (my.x > 220 && my.x < 360 && my.y < 100 && keyIsDown(69)) {
 		push();
 		strokeWeight(3);
 		fill("white");
@@ -443,12 +453,7 @@ function messages() {
 	}
 
 	// trumpet clue
-	if (
-		my.x > 405 &&
-		my.x < 445 &&
-		my.y < 105 &&
-		keyIsDown(69)
-		) {
+	if (my.x > 405 && my.x < 445 && my.y < 105 && keyIsDown(69)) {
 		push();
 		strokeWeight(3);
 		fill("white");
@@ -473,37 +478,31 @@ function messages() {
 		clue4 = false;
 	}
 
-		// guitar clue
-		if (
-			my.x > 355 &&
-			my.x < 415 &&
-			my.y < 640 &&
-			my.y > 580 &&
-			keyIsDown(69)
-			) {
-			push();
-			strokeWeight(3);
-			fill("white");
-			// image(clockface, 210, 150, 180, 180);
-			rect(140, 350, 340, 120, 10);
-			pop();
+	// guitar clue
+	if (my.x > 355 && my.x < 415 && my.y < 640 && my.y > 580 && keyIsDown(69)) {
+		push();
+		strokeWeight(3);
+		fill("white");
+		// image(clockface, 210, 150, 180, 180);
+		rect(140, 350, 340, 120, 10);
+		pop();
 
-			push();
-			fill("black");
-			textSize(9);
-			textLeading(15);
-			text("Clue 4:", 50, 360, 300);
-			text(
-				"Got the guitar! We should check the time again. I think it’s getting close to showtime. (Press ‘E’ to check the sound.)",
-				150,
-				378,
-				330
-			);
-			text("(move away to close)", 160, 452, 300);
-			pop();
+		push();
+		fill("black");
+		textSize(9);
+		textLeading(15);
+		text("Clue 4:", 50, 360, 300);
+		text(
+			"Got the guitar! We should check the time again. I think it’s getting close to showtime. (Press ‘E’ to check the sound.)",
+			150,
+			378,
+			330
+		);
+		text("(move away to close)", 160, 452, 300);
+		pop();
 
-			clue5 = false;
-		}
+		clue5 = false;
+	}
 
 	//final chessboard clue
 	if (
@@ -545,14 +544,28 @@ function doubleClicked() {
 	}
 }
 
+let playerLandmark = "none";
+function nearClueLocation() {
+	// play piano
+	if (my.x > 220 && my.x < 360 && my.y < 100) {
+		playerLandmark = "piano";
+	}
+	// near trumpet
+	else if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85) {
+		playerLandmark = "trumpet";
+	}
+	// near guitar
+	else if (my.x > 360 && my.x < 400 && my.y > 600) {
+		playerLandmark = "guitar";
+	} else {
+		playerLandmark = "none";
+	}
+}
+
 function playMusic() {
 	// play piano
-	if (
-		my.x > 220 &&
-		my.x < 360 &&
-		my.y < 100 &&
-		musicPlayState
-		) {
+	if (my.x > 220 && my.x < 360 && my.y < 100 && musicPlayState) {
+		console.log("played music");
 		push();
 		// fill(255, 251, 0, 30);
 		// noStroke();
@@ -563,6 +576,8 @@ function playMusic() {
 		// music1.setLoop(false);
 		// music1.stop();
 		// music1.noLoop();
+		musicPlayState = false;
+		nearClueForMusic = false;
 	}
 
 	// play trumpet
@@ -574,6 +589,8 @@ function playMusic() {
 		pop();
 
 		shared.music2 = true;
+		musicPlayState = false;
+		nearClueForMusic = false;
 	}
 
 	// play guitar
@@ -585,6 +602,8 @@ function playMusic() {
 		pop();
 
 		shared.music3 = true;
+		musicPlayState = false;
+		nearClueForMusic = false;
 	}
 }
 
