@@ -54,8 +54,8 @@ function preload() {
 
 	// music1 = false;
 	music1 = loadSound("./sounds/snippets/sound_snippet_4.mp3");
-	music2 = loadSound();
-	music3 = loadSound();
+	// music2 = loadSound();
+	// music3 = loadSound();
 
 	bg = loadImage("./images/map.png");
 	bgPortal = loadImage("./images/portal.png");
@@ -100,13 +100,13 @@ function draw() {
 		drawTitleScreen();
 	} else if (shared.gameState === "intro") {
 		drawIntroScreen();
-	// calls functions while playing	
 	} else if (shared.gameState === "playing") {
 		drawGame();
 		drawPlayers();
 		checkPressedKeys();
 		checkBoundaries();
 		messages();
+		nearClueLocation();
 		playMusic();
 		checkMusic();
 		checkFinalSolve();
@@ -257,7 +257,6 @@ function checkPressedKeys() {
 		text("'E' to interact", 160, 270);
 		text("'Ctrl' to reset position", 160, 310);
 		pop();
-		
 	} else if (keyIsDown(SHIFT)) {
 		// clue list
 		if (clue1 === false && clue2 === true) {
@@ -331,7 +330,7 @@ function checkPressedKeys() {
 }
 
 function keyPressed() {
-	//reset position with 'ctrl' key
+	//reset position with 'Ctrl' key
 	if (keyCode === CONTROL) {
 		my.x = 294;
 		my.y = 610;
@@ -340,20 +339,15 @@ function keyPressed() {
 }
 
 function keyReleased() {
-	// plays audio when nearClueLocation
 	if (my.x > 220 && my.x < 360 && my.y < 100) {
-		// piano audio
 		nearClueForMusic = true;
 	} else if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85) {
-		// trumpet music
 		nearClueForMusic = true;
-		// guitar music
 	} else if (my.x > 360 && my.x < 400 && my.y > 600) {
 		nearClueForMusic = true;
 	}
 
 	if (keyCode === 69 && nearClueForMusic) {
-		// interact with 'e' key
 		musicPlayState = true;
 	}
 }
@@ -470,6 +464,7 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill("white");
+		// image(clockface, 210, 150, 180, 180);
 		rect(140, 350, 340, 120, 10);
 		pop();
 
@@ -494,6 +489,7 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill("white");
+		// image(clockface, 210, 150, 180, 180);
 		rect(140, 350, 340, 120, 10);
 		pop();
 
@@ -518,6 +514,7 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill("white");
+		// image(clockface, 210, 150, 180, 180);
 		rect(140, 350, 340, 120, 10);
 		pop();
 
@@ -572,17 +569,15 @@ function messages() {
 	shared.clue6 = true;
 }
 
-// close first clue
 function doubleClicked() {
 	if (clue1 === true) {
 		clue1 = false;
 	}
 }
 
-// defines boundaries of instruments
 let playerLandmark = "none";
 function nearClueLocation() {
-	// near piano
+	// play piano
 	if (my.x > 220 && my.x < 360 && my.y < 100) {
 		playerLandmark = "piano";
 	}
@@ -603,9 +598,15 @@ function playMusic() {
 	if (my.x > 220 && my.x < 360 && my.y < 100 && musicPlayState) {
 		console.log("played music");
 		push();
+		// fill(255, 251, 0, 30);
+		// noStroke();
+		// ellipse(304, 60, 110);
 		pop();
 
 		music1.play();
+		// music1.setLoop(false);
+		// music1.stop();
+		// music1.noLoop();
 		musicPlayState = false;
 		nearClueForMusic = false;
 	}
@@ -653,7 +654,6 @@ function checkMusic() {
 
 function checkFinalSolve() {
 	if (
-		// final clue is solved
 		shared.clue6 === true &&
 		my.x > 320 &&
 		my.x < 350 &&
