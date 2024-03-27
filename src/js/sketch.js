@@ -46,6 +46,8 @@ function preload() {
 		music3: false,
 	});
 
+	sharedMusic.music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
+
 	bg = loadImage("./images/map.png");
 	bgPortal = loadImage("./images/portal.png");
 	startScreen = loadImage("./images/start_screen.jpg");
@@ -95,8 +97,8 @@ function draw() {
 		checkPressedKeys();
 		checkBoundaries();
 		messages();
-		playMusic();
-		checkMusic();
+		// playMusic();
+		// checkMusic();
 		checkFinalSolve();
 		drawEnd();
 	}
@@ -406,7 +408,7 @@ function messages() {
 	// piano clue
 	if (
 		my.x > 220 &&
-		my.x < 360 && 
+		my.x < 360 &&
 		my.y < 100 &&
 		keyIsDown(69)
 		) {
@@ -432,12 +434,13 @@ function messages() {
 		pop();
 
 		clue3 = false;
+		sharedMusic.music1 = true;
 	}
 
 	// trumpet clue
 	if (
 		my.x > 405 &&
-		my.x < 445 && 
+		my.x < 445 &&
 		my.y < 105 &&
 		keyIsDown(69)
 		) {
@@ -468,7 +471,7 @@ function messages() {
 		// guitar clue
 		if (
 			my.x > 355 &&
-			my.x < 415 && 
+			my.x < 415 &&
 			my.y < 640 &&
 			my.y > 580 &&
 			keyIsDown(69)
@@ -479,7 +482,7 @@ function messages() {
 			// image(clockface, 210, 150, 180, 180);
 			rect(140, 350, 340, 120, 10);
 			pop();
-	
+
 			push();
 			fill("black");
 			textSize(9);
@@ -493,10 +496,10 @@ function messages() {
 			);
 			text("(move away to close)", 160, 452, 300);
 			pop();
-	
+
 			clue5 = false;
 		}
-	
+
 	//final chessboard clue
 	if (
 		// shared.music1 === true &&
@@ -537,54 +540,54 @@ function doubleClicked() {
 	}
 }
 
-function playMusic() {
-	// play piano
-	if (my.x > 280 && my.x < 305 && my.y < 107 && keyIsDown(69)) {
-		push();
-		fill(255, 251, 0, 30);
-		noStroke();
-		ellipse(304, 60, 110);
-		pop();
+// function playMusic() {
+// 	// play piano
+// 	if (my.x > 280 && my.x < 305 && my.y < 107 && keyIsDown(69)) {
+// 		push();
+// 		fill(255, 251, 0, 30);
+// 		noStroke();
+// 		ellipse(304, 60, 110);
+// 		pop();
 
-		shared.music1 = true;
-	}
+// 		shared.music1 = true;
+// 	}
 
-	// play trumpet
-	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && keyIsDown(69)) {
-		push();
-		fill(255, 251, 0, 50);
-		noStroke();
-		ellipse(430, 75, 40);
-		pop();
+// 	// play trumpet
+// 	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && keyIsDown(69)) {
+// 		push();
+// 		fill(255, 251, 0, 50);
+// 		noStroke();
+// 		ellipse(430, 75, 40);
+// 		pop();
 
-		shared.music2 = true;
-	}
+// 		shared.music2 = true;
+// 	}
 
-	// play guitar
-	if (my.x > 360 && my.x < 400 && my.y > 600 && keyIsDown(69)) {
-		push();
-		fill(255, 251, 0, 50);
-		noStroke();
-		ellipse(390, 620, 40);
-		pop();
+// 	// play guitar
+// 	if (my.x > 360 && my.x < 400 && my.y > 600 && keyIsDown(69)) {
+// 		push();
+// 		fill(255, 251, 0, 50);
+// 		noStroke();
+// 		ellipse(390, 620, 40);
+// 		pop();
 
-		shared.music3 = true;
-	}
-}
+// 		shared.music3 = true;
+// 	}
+// }
 
-function checkMusic() {
-	if (
-		shared.music1 === true &&
-		shared.music2 === true &&
-		shared.music3 === true
-	) {
-		push();
-		noStroke();
-		fill(255, 251, 0, 50);
-		ellipse(592, 585, 100);
-		pop();
-	}
-}
+// function checkMusic() {
+// 	if (
+// 		shared.music1 === true &&
+// 		shared.music2 === true &&
+// 		shared.music3 === true
+// 	) {
+// 		push();
+// 		noStroke();
+// 		fill(255, 251, 0, 50);
+// 		ellipse(592, 585, 100);
+// 		pop();
+// 	}
+// }
 
 function checkFinalSolve() {
 	if (
