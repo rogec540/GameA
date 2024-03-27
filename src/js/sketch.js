@@ -92,7 +92,6 @@ function setup() {
 	clue4 = true;
 	clue5 = true;
 
-
 	my.characterId = floor(random(4));
 }
 
@@ -138,7 +137,7 @@ function drawTitleScreen() {
 	textAlign(CENTER);
 	textLeading(12);
 	text(
-		"Explore the room using WASD or arrow keys, unlock clues by interacting with items around you, solve the puzzle, and escape with your team before time runs out to win!",
+		"Escape with your team before time runs out! Explore the room using WASD or arrow keys. Unlock clues by interacting with items around you.",
 		130,
 		310,
 		400,
@@ -175,7 +174,7 @@ function drawIntroScreen() {
 	strokeWeight(2);
 	rect(170, 438, 300, 38, 10);
 	fill("black");
-	text("-click to continue-", 180, 450, 300, 600);
+	text("-click to continue-", 175, 450, 300, 600);
 	pop();
 
 	//game timer
@@ -263,7 +262,7 @@ function checkPressedKeys() {
 		pop();
 	} else if (keyIsDown(SHIFT)) {
 		// clue list
-		if (clue1 === false && clue2 === true) {
+		if (clue1 === false && clue2 === true && clue3 === true) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -278,11 +277,11 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (clue1 === false && clue2 === false) {
+		} else if (clue1 === false && clue2 === false && clue3 === true) {
 			push();
 			strokeWeight(3);
 			fill("white");
-			rect(134, 350, 340, 120, 10);
+			rect(134, 350, 340, 150, 10);
 			pop();
 
 			push();
@@ -294,17 +293,17 @@ function checkPressedKeys() {
 			text("The hands will tell you all you need to know.", 150, 385, 350);
 			text("Clue 2:", 150, 420, 300);
 			text(
-				"it's 4:30, 2 hours til showtime! Time to start practicing.",
+				"The time is stuck at 4:30, 2 hours til showtime! Time to start practicing.",
 				150,
 				440,
 				350
 			);
 			pop();
-		} else if (clue3 === false) {
+		} else if (clue1 === false && clue2 === false && clue3 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
-			rect(134, 350, 500, 120, 10);
+			rect(134, 300, 500, 200, 10);
 			pop();
 
 			push();
@@ -312,24 +311,24 @@ function checkPressedKeys() {
 			textSize(8);
 			textLeading(12);
 			textAlign(LEFT);
-			text("Clue 1:", 150, 365, 300);
+			text("Clue 1:", 150, 300, 300);
 			text("The hands will tell you all you need to know.", 150, 385, 350);
-			text("Clue 2:", 150, 420, 300);
+			text("Clue 2:", 150, 320, 300);
 			text(
-				"it's 4:30, 2 hours til showtime! Time to start practicing.",
+				"The time is stuck at 4:30, 2 hours til showtime! Time to start practicing.",
 				150,
 				440,
 				350
 			);
-			text("Clue 3:", 50, 490, 300);
+			text("Clue 3:", 50, 450, 300);
 			text(
 				"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
 				150,
 				500,
 				330
 			);
-				pop();
-			}
+			pop();
+		}
 	} else my.keysReleasedSinceAction = true;
 }
 
@@ -452,7 +451,7 @@ function messages() {
 		textLeading(15);
 		text("Clue 2:", 50, 360, 300);
 		text(
-			"It's 4:30, 2 hours til showtime! This is usually when we would start rehearsing. I wonder if the piano is in tune.",
+			"The time is stuck at 4:30, 2 hours til showtime! This is usually when we would start rehearsing. I wonder if the piano is in tune.",
 			145,
 			390,
 			330
@@ -522,18 +521,18 @@ function messages() {
 		rect(140, 350, 340, 120, 10);
 		pop();
 
-			push();
-			fill("black");
-			textSize(9);
-			textLeading(15);
-			text("Clue 4:", 50, 360, 300);
-			text(
-				"Got the guitar! We should check the time again. I think it’s getting close to showtime. (Press ‘E’ to check the sound.)",
-				150,
-				378,
-				330
-			)
-			pop();
+		push();
+		fill("black");
+		textSize(9);
+		textLeading(15);
+		text("Clue 4:", 50, 360, 300);
+		text(
+			"Got the guitar! We should check the time again. I think it’s getting close to showtime. (Press ‘E’ to check the sound.)",
+			150,
+			378,
+			330
+		);
+		pop();
 
 		clue5 = false;
 	}
@@ -690,7 +689,7 @@ function drawEnd() {
 		textLeading(25);
 		fill("#000066");
 		text(
-			"We did it! We escaped in time and struck true harmony!",
+			"We did it! We escaped in time and struck true harmony! CMD + R to play again.",
 			200,
 			245,
 			250,
