@@ -262,7 +262,13 @@ function checkPressedKeys() {
 		pop();
 	} else if (keyIsDown(SHIFT)) {
 		// clue list
-		if (clue1 === false && clue2 === true && clue3 === true && clue4 === true  && clue5 === true) {
+		if (
+			clue1 === false &&
+			clue2 === true &&
+			clue3 === true &&
+			clue4 === true &&
+			clue5 === true
+		) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -277,7 +283,13 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (clue1 === false && clue2 === false && clue3 === true && clue4 === true && clue5 === true) {
+		} else if (
+			clue1 === false &&
+			clue2 === false &&
+			clue3 === true &&
+			clue4 === true &&
+			clue5 === true
+		) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -299,7 +311,13 @@ function checkPressedKeys() {
 				350
 			);
 			pop();
-		} else if (clue1 === false && clue2 === false && clue3 === false  && clue4 === true && clue5 === true) {
+		} else if (
+			clue1 === false &&
+			clue2 === false &&
+			clue3 === false &&
+			clue4 === true &&
+			clue5 === true
+		) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -329,10 +347,21 @@ function checkPressedKeys() {
 				330
 			);
 			pop();
-		} else if (clue1 === false && clue2 === false && clue3 === false  && clue4 === false && clue5 === true) {
+		} else if (
+			clue1 === false &&
+			clue2 === false &&
+			clue3 === false &&
+			clue4 === false &&
+			clue5 === true
+		) {
 			// must fill
-		}
-		else if (clue1 === false && clue2 === false && clue3 === false  && clue4 === false && clue5 === false) {
+		} else if (
+			clue1 === false &&
+			clue2 === false &&
+			clue3 === false &&
+			clue4 === false &&
+			clue5 === false
+		) {
 			// must fill
 		}
 	} else my.keysReleasedSinceAction = true;
