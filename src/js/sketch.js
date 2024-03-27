@@ -21,6 +21,7 @@ let charactersleft = [];
 let characterId;
 
 let music1, music2, music3;
+let musicPlayState = false;
 
 let clue1, clue2, clue3, clue4, clue5, clue6;
 let clockface;
@@ -29,6 +30,8 @@ let chess;
 let strokeColor;
 
 let quinqueFont;
+
+var startOverSound;
 
 const TIMER_DURATION = 400000;
 
@@ -548,7 +551,7 @@ function playMusic() {
 		my.x > 220 &&
 		my.x < 360 &&
 		my.y < 100 &&
-		keyIsDown(69)
+		musicPlayState
 		) {
 		push();
 		// fill(255, 251, 0, 30);
@@ -563,7 +566,7 @@ function playMusic() {
 	}
 
 	// play trumpet
-	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && keyIsDown(69)) {
+	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && musicPlayState) {
 		push();
 		fill(255, 251, 0, 50);
 		noStroke();
@@ -574,7 +577,7 @@ function playMusic() {
 	}
 
 	// play guitar
-	if (my.x > 360 && my.x < 400 && my.y > 600 && keyIsDown(69)) {
+	if (my.x > 360 && my.x < 400 && my.y > 600 && musicPlayState) {
 		push();
 		fill(255, 251, 0, 50);
 		noStroke();
@@ -621,7 +624,7 @@ function drawEnd() {
 		textLeading(25);
 		fill("#000066");
 		text(
-			"Oh no! You failed to strike true harmony in time and now are stuck in the loop! Refresh and try again.",
+			"Oh no! You failed to strike true harmony in time and now are stuck in the loop! CMD + R to refresh and try again.",
 			200,
 			215,
 			250,
