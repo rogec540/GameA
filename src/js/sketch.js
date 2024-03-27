@@ -464,7 +464,7 @@ function messages() {
 	}
 
 	// piano clue
-	if (my.x > 220 && my.x < 360 && my.y < 100 && keyIsDown(69)) {
+	if (playerLandmark === "piano" && keyIsDown(69)) {
 		push();
 		strokeWeight(3);
 		fill("white");
@@ -489,7 +489,7 @@ function messages() {
 	}
 
 	// trumpet clue
-	if (my.x > 405 && my.x < 445 && my.y < 105 && keyIsDown(69)) {
+	if (playerLandmark === "trumpet" && keyIsDown(69)) {
 		push();
 		strokeWeight(3);
 		fill("white");
@@ -514,7 +514,7 @@ function messages() {
 	}
 
 	// guitar clue
-	if (my.x > 355 && my.x < 415 && my.y < 640 && my.y > 580 && keyIsDown(69)) {
+	if (playerLandmark === "guitar" && keyIsDown(69)) {
 		push();
 		strokeWeight(3);
 		fill("white");
