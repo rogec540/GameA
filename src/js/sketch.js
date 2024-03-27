@@ -20,7 +20,7 @@ let characterId;
 
 let music1, music2, music3;
 
-let clue1, clue2, clue3;
+let clue1, clue2, clue3, clue4, clue5, clue6;
 let clockface;
 let chess;
 
@@ -38,7 +38,7 @@ function preload() {
 		gameState: "title",
 		startTime: Date.now(),
 		displayTime: null,
-		clue3: false,
+		clue6: false,
 	});
 	sharedMusic = partyLoadShared("shared", {
 		music1: false,
@@ -383,7 +383,7 @@ function messages() {
 		strokeWeight(3);
 		fill("white");
 		image(clockface, 210, 150, 180, 180);
-		rect(134, 350, 340, 120, 10);
+		rect(134, 350, 340, 140, 10);
 		pop();
 
 		push();
@@ -392,22 +392,116 @@ function messages() {
 		textLeading(15);
 		text("Clue 2:", 50, 360, 300);
 		text(
-			"it's 4:30, 2 hours til showtime! Time to start practicing.",
+			"It's 4:30, 2 hours til showtime! This is usually when we would start rehearsing. I wonder if the piano is in tune.",
 			145,
 			390,
 			330
 		);
-		text("(move away to close)", 160, 445, 300);
+		text("(move away to close)", 160, 465, 300);
 		pop();
 
 		clue2 = false;
 	}
 
+	// piano clue
+	if (
+		my.x > 220 &&
+		my.x < 360 && 
+		my.y < 100 &&
+		keyIsDown(69)
+		) {
+		push();
+		strokeWeight(3);
+		fill("white");
+		// image(clockface, 210, 150, 180, 180);
+		rect(140, 350, 340, 120, 10);
+		pop();
+
+		push();
+		fill("black");
+		textSize(9);
+		textLeading(15);
+		text("Clue 3:", 50, 360, 300);
+		text(
+			"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
+			150,
+			375,
+			330
+		);
+		text("(move away to close)", 160, 452, 300);
+		pop();
+
+		clue3 = false;
+	}
+
+	// trumpet clue
+	if (
+		my.x > 405 &&
+		my.x < 445 && 
+		my.y < 105 &&
+		keyIsDown(69)
+		) {
+		push();
+		strokeWeight(3);
+		fill("white");
+		// image(clockface, 210, 150, 180, 180);
+		rect(140, 350, 340, 120, 10);
+		pop();
+
+		push();
+		fill("black");
+		textSize(9);
+		textLeading(15);
+		text("Clue 4:", 50, 360, 300);
+		text(
+			"The trumpet sounds fine, but there's still something missing from the stage. We need to find something red…",
+			150,
+			385,
+			330
+		);
+		text("(move away to close)", 160, 452, 300);
+		pop();
+
+		clue4 = false;
+	}
+
+		// guitar clue
+		if (
+			my.x > 355 &&
+			my.x < 415 && 
+			my.y < 640 &&
+			my.y > 580 &&
+			keyIsDown(69)
+			) {
+			push();
+			strokeWeight(3);
+			fill("white");
+			// image(clockface, 210, 150, 180, 180);
+			rect(140, 350, 340, 120, 10);
+			pop();
+	
+			push();
+			fill("black");
+			textSize(9);
+			textLeading(15);
+			text("Clue 4:", 50, 360, 300);
+			text(
+				"Got the guitar! We should check the time again. I think it’s getting close to showtime. (Press ‘E’ to check the sound.)",
+				150,
+				378,
+				330
+			);
+			text("(move away to close)", 160, 452, 300);
+			pop();
+	
+			clue5 = false;
+		}
+	
 	//final chessboard clue
 	if (
-		shared.music1 === true &&
-		shared.music2 === true &&
-		shared.music3 === true &&
+		// shared.music1 === true &&
+		// shared.music2 === true &&
+		// shared.music3 === true &&
 		my.x > 520 &&
 		my.x < 620 &&
 		my.y > 520 &&
@@ -426,15 +520,15 @@ function messages() {
 		textSize(10);
 		textLeading(15);
 		text(
-			"Why is the king sitting out of place? Must be the final clue.",
+			"Why is the king at G5? Just like the pieces on a chessboard, everything on stage needs to be in its proper place for the performance to succeed.",
 			145,
-			390,
+			365,
 			330
 		);
 		pop();
 	}
 
-	shared.clue3 = true;
+	shared.clue6 = true;
 }
 
 function doubleClicked() {
@@ -494,7 +588,7 @@ function checkMusic() {
 
 function checkFinalSolve() {
 	if (
-		shared.clue3 === true &&
+		shared.clue6 === true &&
 		my.x > 320 &&
 		my.x < 350 &&
 		my.y > 350 &&
