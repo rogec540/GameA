@@ -11,7 +11,9 @@
 let bg;
 let bgPortal;
 let startScreen;
-let guests, my, shared, sharedMusic;
+let guests, my, shared;
+//sharedMusic
+
 let move;
 
 let characters = [];
@@ -40,13 +42,14 @@ function preload() {
 		displayTime: null,
 		clue6: false,
 	});
-	sharedMusic = partyLoadShared("shared", {
-		music1: false,
-		music2: false,
-		music3: false,
-	});
+	// sharedMusic = partyLoadShared("shared", {
+	// 	music1: false,
+	// 	music2: false,
+	// 	music3: false,
+	// });
 
-	sharedMusic.music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
+	// music1 = false;
+	music1 = loadSound("./sounds/snippets/sound_snippet_4.mp3");
 
 	bg = loadImage("./images/map.png");
 	bgPortal = loadImage("./images/portal.png");
@@ -97,8 +100,8 @@ function draw() {
 		checkPressedKeys();
 		checkBoundaries();
 		messages();
-		// playMusic();
-		// checkMusic();
+		playMusic();
+		checkMusic();
 		checkFinalSolve();
 		drawEnd();
 	}
@@ -434,7 +437,6 @@ function messages() {
 		pop();
 
 		clue3 = false;
-		sharedMusic.music1 = true;
 	}
 
 	// trumpet clue
@@ -540,54 +542,62 @@ function doubleClicked() {
 	}
 }
 
-// function playMusic() {
-// 	// play piano
-// 	if (my.x > 280 && my.x < 305 && my.y < 107 && keyIsDown(69)) {
-// 		push();
-// 		fill(255, 251, 0, 30);
-// 		noStroke();
-// 		ellipse(304, 60, 110);
-// 		pop();
+function playMusic() {
+	// play piano
+	if (
+		my.x > 220 &&
+		my.x < 360 &&
+		my.y < 100 &&
+		keyIsDown(69)
+		) {
+		push();
+		// fill(255, 251, 0, 30);
+		// noStroke();
+		// ellipse(304, 60, 110);
+		pop();
 
-// 		shared.music1 = true;
-// 	}
+		music1.play();
+		// music1.setLoop(false);
+		// music1.stop();
+		// music1.noLoop();
+	}
 
-// 	// play trumpet
-// 	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && keyIsDown(69)) {
-// 		push();
-// 		fill(255, 251, 0, 50);
-// 		noStroke();
-// 		ellipse(430, 75, 40);
-// 		pop();
+	// play trumpet
+	if (my.x > 408 && my.x < 435 && my.y > 55 && my.y < 85 && keyIsDown(69)) {
+		push();
+		fill(255, 251, 0, 50);
+		noStroke();
+		ellipse(430, 75, 40);
+		pop();
 
-// 		shared.music2 = true;
-// 	}
+		shared.music2 = true;
+	}
 
-// 	// play guitar
-// 	if (my.x > 360 && my.x < 400 && my.y > 600 && keyIsDown(69)) {
-// 		push();
-// 		fill(255, 251, 0, 50);
-// 		noStroke();
-// 		ellipse(390, 620, 40);
-// 		pop();
+	// play guitar
+	if (my.x > 360 && my.x < 400 && my.y > 600 && keyIsDown(69)) {
+		push();
+		fill(255, 251, 0, 50);
+		noStroke();
+		ellipse(390, 620, 40);
+		pop();
 
-// 		shared.music3 = true;
-// 	}
-// }
+		shared.music3 = true;
+	}
+}
 
-// function checkMusic() {
-// 	if (
-// 		shared.music1 === true &&
-// 		shared.music2 === true &&
-// 		shared.music3 === true
-// 	) {
-// 		push();
-// 		noStroke();
-// 		fill(255, 251, 0, 50);
-// 		ellipse(592, 585, 100);
-// 		pop();
-// 	}
-// }
+function checkMusic() {
+	if (
+		shared.music1 === true &&
+		shared.music2 === true &&
+		shared.music3 === true
+	) {
+		push();
+		noStroke();
+		fill(255, 251, 0, 50);
+		ellipse(592, 585, 100);
+		pop();
+	}
+}
 
 function checkFinalSolve() {
 	if (
