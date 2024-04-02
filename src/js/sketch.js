@@ -32,8 +32,6 @@ let strokeColor;
 
 let quinqueFont;
 
-var startOverSound;
-
 const TIMER_DURATION = 400000;
 
 function preload() {
@@ -84,13 +82,13 @@ function setup() {
 	move = 3;
 
 	strokeColor = random(255);
-	textFont("QuinqueFive");
+	textFont("quinqueFive");
 
 	clue1 = true;
-	clue2 = true;
-	clue3 = true;
-	clue4 = true;
-	clue5 = true;
+	// clue2 = true;
+	// clue3 = true;
+	// clue4 = true;
+	// clue5 = true;
 
 	my.characterId = floor(random(4));
 }
@@ -159,7 +157,7 @@ function drawTitleScreen() {
 
 function drawIntroScreen() {
 	background(bgPortal);
-	textFont("QuinqueFive");
+	textFont("quinqueFive");
 	textAlign(CENTER);
 	textSize(12);
 	textLeading(25);
@@ -254,7 +252,7 @@ function checkPressedKeys() {
 
 		fill("black");
 		textStyle(BOLD);
-		textFont("QuinqueFive");
+		textFont("quinqueFive");
 		textSize(8);
 		text("WASD or arrow keys to move", 165, 230);
 		text("'E' to interact", 160, 270);
@@ -262,13 +260,7 @@ function checkPressedKeys() {
 		pop();
 	} else if (keyIsDown(SHIFT)) {
 		// clue list
-		if (
-			clue1 === false &&
-			clue2 === true &&
-			clue3 === true &&
-			clue4 === true &&
-			clue5 === true
-		) {
+		if (clue1 === false && clue2 === true) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -283,12 +275,10 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (
-			clue1 === false &&
-			clue2 === false &&
-			clue3 === true &&
-			clue4 === true &&
-			clue5 === true
+		} else if (clue1 === false && clue2 === false // &&
+			// clue3 === true &&
+			// clue4 === true &&
+			// clue5 === true
 		) {
 			push();
 			strokeWeight(3);
@@ -314,9 +304,9 @@ function checkPressedKeys() {
 		} else if (
 			clue1 === false &&
 			clue2 === false &&
-			clue3 === false &&
-			clue4 === true &&
-			clue5 === true
+			clue3 === false //&&
+			// clue4 === true &&
+			// clue5 === true
 		) {
 			push();
 			strokeWeight(3);
@@ -338,7 +328,6 @@ function checkPressedKeys() {
 				440,
 				350
 			);
-			// must adjust so it fits in frame
 			text("Clue 3:", 50, 450, 300);
 			text(
 				"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
@@ -347,23 +336,23 @@ function checkPressedKeys() {
 				330
 			);
 			pop();
-		} else if (
-			clue1 === false &&
-			clue2 === false &&
-			clue3 === false &&
-			clue4 === false &&
-			clue5 === true
-		) {
-			// must fill
-		} else if (
-			clue1 === false &&
-			clue2 === false &&
-			clue3 === false &&
-			clue4 === false &&
-			clue5 === false
-		) {
-			// must fill
-		}
+		 } // else if (
+		// 	clue1 === false &&
+		// 	clue2 === false &&
+		// 	clue3 === false &&
+		// 	clue4 === false &&
+		// 	clue5 === true
+		// ) {
+		// 	// must fill
+		// } else if (
+		// 	clue1 === false &&
+		// 	clue2 === false &&
+		// 	clue3 === false &&
+		// 	clue4 === false &&
+		// 	clue5 === false
+		// ) {
+		// 	// must fill
+		// }
 	} else my.keysReleasedSinceAction = true;
 }
 
@@ -448,7 +437,7 @@ function messages() {
 		rect(248, 580, 125, 30, 5);
 
 		fill("black");
-		textFont("QuinqueFive");
+		textFont("quinqueFive");
 		textSize(8);
 		text("It's locked!", 313, 598);
 	}
@@ -615,15 +604,29 @@ function doubleClicked() {
 let playerLandmark = "none";
 function nearClueLocation() {
 	// play piano
-	if (my.x > 220 && my.x < 360 && my.y < 100 && my.y > 0) {
+	if (my.x > 220 && 
+		my.x < 360 && 
+		my.y < 100 && 
+		my.y > 0
+		) {
 		playerLandmark = "piano";
 	}
 	// near trumpet
-	else if (my.x > 390 && my.x < 450 && my.y < 75 && my.y > 30) {
+	else if (
+		my.x > 390 && 
+		my.x < 450 && 
+		my.y < 75 && 
+		my.y > 30
+		) {
 		playerLandmark = "trumpet";
 	}
 	// near guitar
-	else if (my.x > 355 && my.x < 415 && my.y < 640 && my.y > 580) {
+	else if (
+		my.x > 355 && 
+		my.x < 415 && 
+		my.y < 640 && 
+		my.y > 580
+		) {
 		playerLandmark = "guitar";
 	} else {
 		playerLandmark = "none";
@@ -704,7 +707,7 @@ function checkFinalSolve() {
 function drawEnd() {
 	if (shared.displayTime === "") {
 		background(bgPortal);
-		textFont("QuinqueFive");
+		textFont("quinqueFive");
 		textAlign(CENTER);
 		textSize(12);
 		textLeading(25);
@@ -718,7 +721,7 @@ function drawEnd() {
 		);
 	} else if (shared.gameState === "win") {
 		background(bgPortal);
-		textFont("QuinqueFive");
+		textFont("quinqueFive");
 		textAlign(CENTER);
 		textSize(12);
 		textLeading(25);

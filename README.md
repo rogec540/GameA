@@ -25,7 +25,9 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 
 <img src="./src/images/game_title.gif" alt="background" width="700"/>
 
-<img src="./src/images/map.png" alt="background" width="300"/> &nbsp; <img src="./src/images/portal.png" alt="background" height="300"/>
+<img src="./src/images/start_screen.jpg" alt="startscreen" width="194"/> &nbsp; <img src="./src/images/map.png" alt="background" width="200"/> &nbsp; <img src="./src/images/portal.png" alt="background" height="200"/>
+
+<br>
 
 <img src="./src/images/p1.gif" alt="blue" width="150"/> <img src="./src/images/p2.gif" alt="red" width="150"/> <img src="./src/images/p3.gif" alt="green" width="150"/> <img src="./src/images/p4.gif" alt="yellow" width="150"/>
 
@@ -45,14 +47,11 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 ### Audio
 
 - Guitar SFX
-  - From:
-  - [link here]()
+  - From: [TV Girl - Lovers Rock (EASY SLOW Guitar Tabs & chords Tutorial)↗](https://youtu.be/eZhSvUd1o2o?si=xprSYf03K2XAD6ba)
 - Piano SFX
-  - From:
-  - [link here]()
+  - From: [YouTube Piano - Play It With Your Computer Keyboard↗](https://youtu.be/3gZC5763wYk?si=g9tvA-4655ZMNUYE)
 - Trumpet SFX
-  - From:
-  - [link here]()
+  - From: [YouTube Trumpet - Play Trumpet with computer Keyboard↗](https://youtu.be/xa17zHJhNhA?si=N5ctGNsioYnueP_6)
 
 <br>
 <br>
@@ -60,7 +59,7 @@ Explore the room using WASD or arrow keys, unlock clues by interacting with item
 
 ## Support/Contact
 
-### Team Crikey
+### Team Crikey!
 
 **Charlotte Rogers** Available on Github @ [rogec540↗](https://github.com/rogec540)\
 **Chloe Yiu** Available on Github @ [yiuchl↗](https://github.com/yiuchl)\
