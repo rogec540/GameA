@@ -716,6 +716,10 @@ function drawEnd() {
 			350
 		);
 	} else if (shared.gameState === "win") {
+		drawWinScreen();
+	}
+
+	function drawWinScreen() {
 		background(bgPortal);
 		textFont("quinqueFive");
 		textAlign(CENTER);
