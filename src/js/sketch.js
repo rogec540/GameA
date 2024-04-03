@@ -77,7 +77,9 @@ function setup() {
 	strokeColor = random(255);
 	textFont("quinqueFive");
 
-	clue1 = true;
+	clue1 = false;
+	clue2 = false;
+	clue3 = false;
 
 	my.characterId = floor(random(4));
 }
@@ -179,7 +181,7 @@ function drawGame() {
 	textSize(8);
 	textAlign(LEFT);
 	text("hold 'i' for controls", 10, 570, 250, 600);
-	if (clue1 === false) {
+	if (clue1 === true) {
 		text("'shift' for clue list", 2, 590, 250, 600);
 	}
 	pop();
@@ -248,7 +250,7 @@ function checkPressedKeys() {
 		pop();
 	} else if (keyIsDown(SHIFT)) {
 		// clue list
-		if (clue1 === false && clue2 === true) {
+		if (clue1 === true && clue2 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -263,7 +265,7 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (clue1 === false && clue2 === false) {
+		} else if (clue1 === true && clue2 === true && clue3 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -286,14 +288,14 @@ function checkPressedKeys() {
 			);
 			pop();
 		} else if (
-			clue1 === false &&
-			clue2 === false &&
-			clue3 === false
+			clue1 === true &&
+			clue2 === true &&
+			clue3 === true
 		) {
 			push();
 			strokeWeight(3);
 			fill("white");
-			rect(134, 300, 500, 200, 10);
+			rect(120, 300, 430, 200, 10);
 			pop();
 
 			push();
@@ -301,21 +303,21 @@ function checkPressedKeys() {
 			textSize(8);
 			textLeading(12);
 			textAlign(LEFT);
-			text("Clue 1:", 150, 300, 300);
-			text("The hands will tell you all you need to know.", 150, 385, 350);
-			text("Clue 2:", 150, 320, 300);
+			text("Clue 1:", 150, 310, 300);
+			text("The hands will tell you all you need to know.", 150, 330, 370);
+			text("Clue 2:", 150, 360, 300);
 			text(
 				"The time is stuck at 4:30, 2 hours til showtime! Time to start practicing.",
 				150,
-				440,
-				350
+				380,
+				370
 			);
-			text("Clue 3:", 50, 450, 300);
+			text("Clue 3:", 150, 420, 300);
 			text(
 				"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
 				150,
-				500,
-				330
+				440,
+				370
 			);
 			pop();
 		 }
@@ -409,7 +411,7 @@ function messages() {
 	}
 
 	//starting clue
-	if (shared.gameState === "playing" && clue1 === true) {
+	if (shared.gameState === "playing" && clue1 === false) {
 		push();
 		strokeWeight(3);
 		fill("white");
@@ -449,7 +451,7 @@ function messages() {
 		text("(move away to close)", 160, 465, 300);
 		pop();
 
-		clue2 = false;
+		clue2 = true;
 	}
 
 	// piano clue
@@ -473,7 +475,7 @@ function messages() {
 		);
 		pop();
 
-		clue3 = false;
+		clue3 = true;
 	}
 
 	// trumpet clue
@@ -556,8 +558,8 @@ function messages() {
 }
 
 function doubleClicked() {
-	if (clue1 === true) {
-		clue1 = false;
+	if (clue1 === false) {
+		clue1 = true;
 	}
 }
 
