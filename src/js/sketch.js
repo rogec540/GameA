@@ -47,7 +47,8 @@ function preload() {
 		clue3: false,
 		clue4: false,
 		clue5: false,
-		clue6: false
+		clue6: false,
+		playingTogether: false
 	});
 
 	music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
@@ -84,8 +85,6 @@ function setup() {
 	textFont("quinqueFive");
 
 	my.characterId = floor(random(4));
-
-	playingTogether = false;
 }
 
 function draw() {
@@ -573,7 +572,7 @@ function messages() {
 	}
 
 	// lead into final clue
-	if (playingTogether === true) {
+	if (shared.playingTogether === true) {
 		push();
 		fill("white");
 		rect(470, 380, 140, 120, 10);
@@ -589,7 +588,7 @@ function messages() {
 
 	// final chessboard clue
 	if (
-		playingTogether === true &&
+		shared.playingTogether === true &&
 		my.x > 520 &&
 		my.x < 620 &&
 		my.y > 520 &&
@@ -683,14 +682,14 @@ function playMusic() {
 
 function checkBandPlaying() {
 	if (shared.clue3 === true && shared.clue4 === true && shared.clue5 === true && keyIsDown(69) && playerLandmark === "piano") {
-		playingTogether = true;
+		shared.playingTogether = true;
 	}
 }
 
 function checkFinalSolve() {
 	if (
 		shared.clue6 === true &&
-		playingTogether === true &&
+		shared.playingTogether === true &&
 		my.x > 320 &&
 		my.x < 350 &&
 		my.y > 350 &&
