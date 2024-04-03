@@ -26,6 +26,7 @@ let nearClueForMusic = false;
 let clue1, clue2, clue3, clue4, clue5, clue6;
 let clockface;
 let chess;
+let playingTogether;
 
 let strokeColor;
 
@@ -41,7 +42,12 @@ function preload() {
 		gameState: "title",
 		startTime: Date.now(),
 		displayTime: null,
-		clue6: false,
+		clue1: false,
+		clue2: false,
+		clue3: false,
+		clue4: false,
+		clue5: false,
+		clue6: false
 	});
 
 	music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
@@ -77,11 +83,9 @@ function setup() {
 	strokeColor = random(255);
 	textFont("quinqueFive");
 
-	clue1 = false;
-	clue2 = false;
-	clue3 = false;
-
 	my.characterId = floor(random(4));
+
+	playingTogether = false;
 }
 
 function draw() {
@@ -97,6 +101,7 @@ function draw() {
 		drawPlayers();
 		checkPressedKeys();
 		checkBoundaries();
+		checkBandPlaying();
 		messages();
 		nearClueLocation();
 		playMusic();
@@ -181,7 +186,7 @@ function drawGame() {
 	textSize(8);
 	textAlign(LEFT);
 	text("hold 'i' for controls", 10, 570, 250, 600);
-	if (clue1 === true) {
+	if (shared.clue1 === true) {
 		text("'shift' for clue list", 2, 590, 250, 600);
 	}
 	pop();
@@ -250,7 +255,7 @@ function checkPressedKeys() {
 		pop();
 	} else if (keyIsDown(SHIFT)) {
 		// clue list
-		if (clue1 === true && clue2 === false) {
+		if (shared.clue1 === true && shared.clue2 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -265,7 +270,7 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (clue1 === true && clue2 === true && clue3 === false) {
+		} else if (shared.clue1 === true && shared.clue2 === true && shared.clue3 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -288,14 +293,15 @@ function checkPressedKeys() {
 			);
 			pop();
 		} else if (
-			clue1 === true &&
-			clue2 === true &&
-			clue3 === true
+			shared.clue1 === true &&
+			shared.clue2 === true &&
+			shared.clue3 === true && 
+			shared.clue4 === false
 		) {
 			push();
 			strokeWeight(3);
 			fill("white");
-			rect(120, 300, 430, 200, 10);
+			rect(120, 300, 410, 200, 10);
 			pop();
 
 			push();
@@ -305,20 +311,56 @@ function checkPressedKeys() {
 			textAlign(LEFT);
 			text("Clue 1:", 150, 310, 300);
 			text("The hands will tell you all you need to know.", 150, 330, 370);
-			text("Clue 2:", 150, 360, 300);
+			text("Clue 2:", 150, 370, 300);
 			text(
-				"The time is stuck at 4:30, 2 hours til showtime! Time to start practicing.",
+				"The time is stuck at 4:30, 2 hours til showtime! Is the piano in tune?",
 				150,
-				380,
+				390,
 				370
 			);
-			text("Clue 3:", 150, 420, 300);
+			text("Clue 3:", 150, 430, 300);
 			text(
-				"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
+				"Let's inspect the other instruments. At least the trumpet is in place.",
 				150,
-				440,
+				450,
 				370
 			);
+			pop();
+		 } else if (
+			shared.clue1 === true &&
+			shared.clue2 === true &&
+			shared.clue3 === true && 
+			shared.clue4 === true
+		 ) {
+			push();
+			strokeWeight(3);
+			fill("white");
+			rect(120, 300, 410, 240, 10);
+			pop();
+
+			push();
+			fill("black");
+			textSize(8);
+			textLeading(12);
+			textAlign(LEFT);
+			text("Clue 1:", 150, 310, 300);
+			text("The hands will tell you all you need to know.", 150, 330, 370);
+			text("Clue 2:", 150, 370, 300);
+			text(
+				"The time is stuck at 4:30, 2 hours til showtime! Is the piano in tune?",
+				150,
+				390,
+				370
+			);
+			text("Clue 3:", 150, 430, 300);
+			text(
+				"Let's inspect the other instruments. At least the trumpet is in place.",
+				150,
+				450,
+				370
+			);
+			text("Clue 4:", 150, 490, 300);
+			text("There's still an instrument missing. We need to find something red…", 150, 510, 370);
 			pop();
 		 }
 	} else my.keysReleasedSinceAction = true;
@@ -411,7 +453,7 @@ function messages() {
 	}
 
 	//starting clue
-	if (shared.gameState === "playing" && clue1 === false) {
+	if (shared.gameState === "playing" && shared.clue1 === false) {
 		push();
 		strokeWeight(3);
 		fill("white");
@@ -451,55 +493,59 @@ function messages() {
 		text("(move away to close)", 160, 465, 300);
 		pop();
 
-		clue2 = true;
+		shared.clue2 = true;
 	}
 
 	// piano clue
 	if (playerLandmark === "piano" && keyIsDown(69)) {
-		push();
-		strokeWeight(3);
-		fill("white");
-		rect(140, 350, 340, 120, 10);
-		pop();
+		if (shared.clue4 === false) {
+			push();
+			strokeWeight(3);
+			fill("white");
+			rect(140, 350, 340, 120, 10);
+			pop();
 
-		push();
-		fill("black");
-		textSize(9);
-		textLeading(15);
-		text("Clue 3:", 50, 360, 300);
-		text(
-			"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
-			150,
-			375,
-			330
-		);
-		pop();
+			push();
+			fill("black");
+			textSize(9);
+			textLeading(15);
+			text("Clue 3:", 50, 360, 300);
+			text(
+				"It feels like something is missing on stage. Let's inspect the other instruments. At least the trumpet is in place.",
+				150,
+				375,
+				330
+			);
+			pop();
+		}
 
-		clue3 = true;
+		shared.clue3 = true;
 	}
 
 	// trumpet clue
 	if (playerLandmark === "trumpet" && keyIsDown(69)) {
-		push();
-		strokeWeight(3);
-		fill("white");
-		rect(140, 350, 340, 120, 10);
-		pop();
+		if (shared.clue5 === false) {
+			push();
+			strokeWeight(3);
+			fill("white");
+			rect(140, 350, 340, 120, 10);
+			pop();
 
-		push();
-		fill("black");
-		textSize(9);
-		textLeading(15);
-		text("Clue 4:", 50, 360, 300);
-		text(
-			"The trumpet sounds fine, but there's still something missing from the stage. We need to find something red…",
-			150,
-			385,
-			330
-		);
-		pop();
+			push();
+			fill("black");
+			textSize(9);
+			textLeading(15);
+			text("Clue 4:", 50, 360, 300);
+			text(
+				"The trumpet sounds fine, but there's still something missing from the stage. We need to find something red…",
+				150,
+				385,
+				330
+			);
+			pop();
+		}
 
-		clue4 = false;
+		shared.clue4 = true;
 	}
 
 	// guitar clue
@@ -514,20 +560,36 @@ function messages() {
 		fill("black");
 		textSize(9);
 		textLeading(15);
-		text("Clue 4:", 50, 360, 300);
+		text("Clue 4:", 50, 380, 300);
 		text(
-			"Got the guitar! We should check the time again. I think it’s getting close to showtime. (Press ‘E’ to check the sound.)",
+			"Got the guitar! Let's try putting it all together, guys!",
 			150,
-			378,
+			400,
 			330
 		);
 		pop();
 
-		clue5 = false;
+		shared.clue5 = true;
 	}
 
-	//final chessboard clue
+	// lead into final clue
+	if (playingTogether === true) {
+		push();
+		fill("white");
+		rect(470, 380, 140, 120, 10);
+		pop();
+
+		push();
+		fill("black");
+		textSize(8);
+		textLeading(12);
+		text("We played like kings! But there's still a piece missing to this puzzle...", 480, 390, 120);
+		pop();
+	}
+
+	// final chessboard clue
 	if (
+		playingTogether === true &&
 		my.x > 520 &&
 		my.x < 620 &&
 		my.y > 520 &&
@@ -558,8 +620,8 @@ function messages() {
 }
 
 function doubleClicked() {
-	if (clue1 === false) {
-		clue1 = true;
+	if (shared.clue1 === false) {
+		shared.clue1 = true;
 	}
 }
 
@@ -619,9 +681,16 @@ function playMusic() {
 	}
 }
 
+function checkBandPlaying() {
+	if (shared.clue3 === true && shared.clue4 === true && shared.clue5 === true && keyIsDown(69) && playerLandmark === "piano") {
+		playingTogether = true;
+	}
+}
+
 function checkFinalSolve() {
 	if (
 		shared.clue6 === true &&
+		playingTogether === true &&
 		my.x > 320 &&
 		my.x < 350 &&
 		my.y > 350 &&
