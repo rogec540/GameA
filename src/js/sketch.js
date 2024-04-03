@@ -1,7 +1,7 @@
-// GameA WIP from Team One - Charlotte, Chloe, and Emma
+// GameA "Band Together" from Team One - Charlotte, Chloe, and Emma
 
-// The beginnings of an explorable room -- attempting an interactive puzzle or escape game
-// You are musicians who wake up stuck in time loop at the site of their first concert.
+// An explorable, escapable room -- attempting an interactive puzzle game
+// You are musicians who wake up stuck in time loop at the site of their first concert
 
 // Our design values:
 // Easy access
@@ -12,7 +12,6 @@ let bg;
 let bgPortal;
 let startScreen;
 let guests, my, shared;
-//sharedMusic
 
 let move;
 
@@ -44,13 +43,7 @@ function preload() {
 		displayTime: null,
 		clue6: false,
 	});
-	// sharedMusic = partyLoadShared("shared", {
-	// 	music1: false,
-	// 	music2: false,
-	// 	music3: false,
-	// });
 
-	// music1 = false;
 	music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
 	music2 = loadSound("./sounds/snippets/sound_snippet.mp4");
 	music3 = loadSound("./sounds/snippets/sound_snippet_4.mp3");
@@ -85,10 +78,6 @@ function setup() {
 	textFont("quinqueFive");
 
 	clue1 = true;
-	// clue2 = true;
-	// clue3 = true;
-	// clue4 = true;
-	// clue5 = true;
 
 	my.characterId = floor(random(4));
 }
@@ -109,7 +98,6 @@ function draw() {
 		messages();
 		nearClueLocation();
 		playMusic();
-		// checkMusic();
 		checkFinalSolve();
 		drawEnd();
 	}
@@ -275,11 +263,7 @@ function checkPressedKeys() {
 			text("Clue 1:", 150, 370, 300);
 			text("The hands will tell you all you need to know.", 150, 390, 350);
 			pop();
-		} else if (clue1 === false && clue2 === false // &&
-			// clue3 === true &&
-			// clue4 === true &&
-			// clue5 === true
-		) {
+		} else if (clue1 === false && clue2 === false) {
 			push();
 			strokeWeight(3);
 			fill("white");
@@ -304,9 +288,7 @@ function checkPressedKeys() {
 		} else if (
 			clue1 === false &&
 			clue2 === false &&
-			clue3 === false //&&
-			// clue4 === true &&
-			// clue5 === true
+			clue3 === false
 		) {
 			push();
 			strokeWeight(3);
@@ -336,23 +318,7 @@ function checkPressedKeys() {
 				330
 			);
 			pop();
-		 } // else if (
-		// 	clue1 === false &&
-		// 	clue2 === false &&
-		// 	clue3 === false &&
-		// 	clue4 === false &&
-		// 	clue5 === true
-		// ) {
-		// 	// must fill
-		// } else if (
-		// 	clue1 === false &&
-		// 	clue2 === false &&
-		// 	clue3 === false &&
-		// 	clue4 === false &&
-		// 	clue5 === false
-		// ) {
-		// 	// must fill
-		// }
+		 }
 	} else my.keysReleasedSinceAction = true;
 }
 
@@ -491,7 +457,6 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill("white");
-		// image(clockface, 210, 150, 180, 180);
 		rect(140, 350, 340, 120, 10);
 		pop();
 
@@ -516,7 +481,6 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill("white");
-		// image(clockface, 210, 150, 180, 180);
 		rect(140, 350, 340, 120, 10);
 		pop();
 
@@ -541,7 +505,6 @@ function messages() {
 		push();
 		strokeWeight(3);
 		fill("white");
-		// image(clockface, 210, 150, 180, 180);
 		rect(140, 350, 340, 120, 10);
 		pop();
 
@@ -563,9 +526,6 @@ function messages() {
 
 	//final chessboard clue
 	if (
-		// shared.music1 === true &&
-		// shared.music2 === true &&
-		// shared.music3 === true &&
 		my.x > 520 &&
 		my.x < 620 &&
 		my.y > 520 &&
@@ -584,7 +544,7 @@ function messages() {
 		textSize(10);
 		textLeading(15);
 		text(
-			"Why is the king at G5? Just like the pieces on a chessboard, everything on stage needs to be in its proper place for the performance to succeed.",
+			"Why is the king at G5? Just like the pieces on a chessboard, every musician needs to be in their proper place for the performance to succeed.",
 			145,
 			365,
 			330
@@ -637,12 +597,6 @@ function playMusic() {
 	// play piano
 	if (playerLandmark === "piano" && musicPlayState) {
 		console.log("played music");
-		push();
-		// fill(255, 251, 0, 30);
-		// noStroke();
-		// ellipse(304, 60, 110);
-		pop();
-
 		music1.play();
 		musicPlayState = false;
 		nearClueForMusic = false;
@@ -650,13 +604,6 @@ function playMusic() {
 
 	// play trumpet
 	if (playerLandmark === "trumpet" && musicPlayState) {
-		push();
-		// fill(255, 251, 0, 50);
-		// noStroke();
-		// ellipse(430, 75, 40);
-		pop();
-
-		//shared.music2 = true;
 		music2.play();
 		musicPlayState = false;
 		nearClueForMusic = false;
@@ -664,32 +611,11 @@ function playMusic() {
 
 	// play guitar
 	if (playerLandmark === "guitar" && musicPlayState) {
-		push();
-		// fill(255, 251, 0, 50);
-		// noStroke();
-		// ellipse(390, 620, 40);
-		pop();
-
-		//shared.music3 = true;
 		music3.play();
 		musicPlayState = false;
 		nearClueForMusic = false;
 	}
 }
-
-// function checkMusic() {
-// 	if (
-// 		shared.music1 === true &&
-// 		shared.music2 === true &&
-// 		shared.music3 === true
-// 	) {
-// 		push();
-// 		noStroke();
-// 		fill(255, 251, 0, 50);
-// 		ellipse(592, 585, 100);
-// 		pop();
-// 	}
-// }
 
 function checkFinalSolve() {
 	if (
