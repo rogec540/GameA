@@ -52,7 +52,7 @@ function preload() {
 	});
 
 	music1 = loadSound("./sounds/snippets/sound_snippet_1.mp4");
-	music2 = loadSound("./sounds/snippets/sound_snippet.mp4");
+	music2 = loadSound("./sounds/snippets/sound_snippet_2.mp4");
 	music3 = loadSound("./sounds/snippets/sound_snippet_4.mp3");
 
 	bg = loadImage("./images/map.png");
